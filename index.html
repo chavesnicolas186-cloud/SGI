@@ -8,75 +8,254 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-:root{--primary:#4f46e5;--primary2:#4338ca;--ok:#10b981;--warn:#f59e0b;--danger:#ef4444;--bg:#f7f7fb;--card:#fff;--muted:#6b7280;--border:#e5e7eb;--shadow:0 8px 24px rgba(17,24,39,.08);--r:12px;--pad:20px;--max:1200px}
-*{box-sizing:border-box}html,body{height:100%}
-body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:#111827;line-height:1.45}
-a{color:var(--primary)}.hidden{display:none!important}
-.header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.7);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
-.header__in{max-width:var(--max);margin:0 auto;padding:12px var(--pad);display:flex;gap:12px;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:12px}
-.brand__logo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--primary),#7c83ff);display:grid;place-items:center;color:#fff}
-.brand__title{font-weight:700}
-.header__right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.badge-dot{display:flex;align-items:center;gap:8px;background:#f3f4f6;border:1px solid var(--border);color:#374151;border-radius:999px;padding:6px 10px;font-size:12px}
-.badge-dot i{color:var(--ok)}
-.btn{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--border);background:#fff;padding:10px 14px;border-radius:10px;font-weight:600;cursor:pointer;transition:.2s}
-.btn:hover{box-shadow:var(--shadow)}
-.btn--primary{background:var(--primary);border-color:var(--primary);color:#fff}
-.btn--ghost{background:transparent;border-color:transparent;color:#374151}
-.btn--sm{padding:8px 10px;font-size:.925rem}
-.btn[disabled]{opacity:.6;cursor:not-allowed}
-.main{max-width:var(--max);margin:0 auto;padding:20px var(--pad) 60px}
-.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--border);margin-bottom:16px}
-.tab{appearance:none;border:none;background:transparent;padding:12px 14px;border-bottom:2px solid transparent;color:#6b7280;font-weight:700;cursor:pointer}
-.tab.is-active{color:var(--primary);border-bottom-color:var(--primary)}
-.section{display:none}.section.is-active{display:block}
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
-.card__hd{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;justify-content:space-between}
-.card__title{font-weight:700}
-.card__bd{padding:18px}
-.grid{display:grid;gap:16px}
-.grid--2{grid-template-columns:repeat(2,minma0,1fr))}
-.grid--3{grid-template-columns:repeat(3,minma0,1fr))}
-@media (max-width:900px){.grid--3,.grid--2{grid-template-columns:1fr}}
-.field{display:flex;flex-direction:column;gap:8px}
-.label{font-weight:700;font-size:.95rem}
-.help{color:var(--muted);font-size:.86rem}
-.input,.select,.textarea{width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;background:#fff}
-.input:focus,.select:focus,.textarea:focus{outline:none;box-shadow:0 0 0 3px rgba(79,70,229,.15);border-color:var(--primary)}
-.textarea{min-height:110px;resize:vertical}
-.row{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minma220px,1fr))}
-.inline{display:flex;gap:10px;flex-wrap:wrap}
-.chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{padding:8px 10px;border:1px solid var(--border);border-radius:999px;background:#f9fafb;font-weight:600;font-size:.9rem}
-.required::after{content:" *";color:var(--danger);font-weight:700}
-.error{font-size:.85rem;color:#b91c1c}
-.step{display:flex;align-items:center;gap:10px}
-.step__n{width:28px;height:28px;border-radius:999px;background:linear-gradient(135deg,var(--primary),#7c83ff);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.9rem}
-.table-wrap{border:1px solid var(--border);border-radius:12px;overflow:auto;background:#fff}
-.table{border-collapse:collapse;width:100%}
-.table th,.table td{padding:12px 14px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
-.table th{background:#f8fafc;font-weight:700}
-.row-actions{display:flex;gap:6px;flex-wrap:nowrap}
-.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;border:1px solid}
-.badge--open{background:#fff7ed;color:#9a3412;border-color:#fed7aa}
-.badge--done{background:#ecfeff;color:#065f46;border-color:#99f6e4}
-.badge--progress{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}
-.kanban{display:grid;grid-template-columns:repeat(3,minma0,1fr));gap:16px}
-@media (max-width:900px){.kanban{grid-template-columns:1fr}}
-.kcol h3{margin:8px 0 12px}
-.kcard{border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:12px;padding:12px;background:#fff;margin-bottom:10px}
-.kcard.over{border-left-color:var(--danger)}.kcard.soon{border-left-color:var(--warn)}
-.kmeta{color:var(--muted);font-size:.9rem}
-.modal{position:fixed;inset:0;background:rgba(17,24,39,.55);display:none;align-items:center;justify-content:center;z-index:60;padding:16px}
-.modal__box{background:#fff;border-radius:16px;box-shadow:var(--shadow);max-width:760px;width:100%;max-height:90vh;display:flex;flex-direction:column}
-.modal__hd{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.modal__bd{padding:18px;overflow:auto}
-.modal__ft{padding:14px 18px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end;background:#f8fafc}
-.toast{position:fixed;bottom:16px;left:50%;transform:translate-50%);z-index:80;display:grid;gap:8px;max-width:min(560px,90vw)}
-.toast__item{background:#111827;color:#fff;padding:12px 14px;border-radius:12px;box-shadow:var(--shadow);display:flex;gap:10px;align-items:flex-start}
-.toast__item i{margin-top:2px}
-@media print{.header,.tabs,.btn,.modal,.toast{display:none!important}body{background:#fff}.card{box-shadow:none;border:1px solid #000}}
+/* Variáveis CSS */
+:root{
+    --primary:#4f46e5;
+    --primary2:#4338ca;
+    --ok:#10b981;
+    --warn:#f59e0b;
+    --danger:#ef4444;
+    --bg:#f7f7fb;
+    --card:#fff;
+    --muted:#6b7280;
+    --border:#e5e7eb;
+    --shadow:0 8px 24px rgba(17,24,39,.08);
+    --r:12px;
+    --pad:20px;
+    --max:1200px;
+}
+
+/* Reset e base */
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:#111827;
+    line-height:1.45;
+}
+a{color:var(--primary);}
+.hidden{display:none!important;}
+
+/* Header */
+.header{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:rgba(255,255,255,.7);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+}
+.header__in{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:12px var(--pad);
+    display:flex;
+    gap:12px;
+    align-items:center;
+    justify-content:space-between;
+}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand__logo{
+    width:40px;
+    height:40px;
+    border-radius:10px;
+    background:linear-gradient(135deg,var(--primary),#7c83ff);
+    display:grid;
+    place-items:center;
+    color:#fff;
+}
+.brand__title{font-weight:700;}
+.header__right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+
+/* Badges */
+.badge-dot{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:#f3f4f6;
+    border:1px solid var(--border);
+    color:#374151;
+    border-radius:999px;
+    padding:6px 10px;
+    font-size:12px;
+}
+.badge-dot i{color:var(--ok);}
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 8px;
+    border-radius:999px;
+    border:1px solid;
+    font-size: 0.85rem; /* Ajuste para melhor visualização */
+}
+.badge--open{background:#fff7ed;color:#9a3412;border-color:#fed7aa;}
+.badge--done{background:#ecfeff;color:#065f46;border-color:#99f6e4;}
+.badge--progress{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe;}
+
+/* Botões */
+.btn{
+    display:inline-flex;
+    gap:8px;
+    align-items:center;
+    border:1px solid var(--border);
+    background:#fff;
+    padding:10px 14px;
+    border-radius:10px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+    text-decoration: none; /* Para garantir que não tenha sublinhado se for um link */
+    color: inherit; /* Para herdar a cor do texto */
+}
+.btn:hover{box-shadow:var(--shadow);}
+.btn--primary{background:var(--primary);border-color:var(--primary);color:#fff;}
+.btn--ghost{background:transparent;border-color:transparent;color:#374151;}
+.btn--sm{padding:8px 10px;font-size:.925rem;}
+.btn[disabled]{opacity:.6;cursor:not-allowed;}
+
+/* Main content */
+.main{max-width:var(--max);margin:0 auto;padding:20px var(--pad) 60px;}
+
+/* Tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--border);margin-bottom:16px;}
+.tab{
+    appearance:none;
+    border:none;
+    background:transparent;
+    padding:12px 14px;
+    border-bottom:2px solid transparent;
+    color:#6b7280;
+    font-weight:700;
+    cursor:pointer;
+}
+.tab.is-active{color:var(--primary);border-bottom-color:var(--primary);}
+.section{display:none;}
+.section.is-active{display:block;}
+
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;}
+.card__hd{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;justify-content:space-between;}
+.card__title{font-weight:700;}
+.card__bd{padding:18px;}
+
+/* Grid */
+.grid{display:grid;gap:16px;}
+.grid--2{grid-template-columns:repeat(2,minmax(0,1fr));}
+.grid--3{grid-template-columns:repeat(3,minmax(0,1fr));}
+@media (max-width:900px){.grid--3,.grid--2{grid-template-columns:1fr;}}
+
+/* Formulários */
+.field{display:flex;flex-direction:column;gap:8px;}
+.label{font-weight:700;font-size:.95rem;}
+.help{color:var(--muted);font-size:.86rem;}
+.input,.select,.textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:#fff;
+}
+.input:focus,.select:focus,.textarea:focus{
+    outline:none;
+    box-shadow:0 0 0 3px rgba(79,70,229,.15);
+    border-color:var(--primary);
+}
+.textarea{min-height:110px;resize:vertical;}
+.row{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+.inline{display:flex;gap:10px;flex-wrap:wrap;}
+.chips{display:flex;gap:6px;flex-wrap:wrap;}
+.chip{padding:8px 10px;border:1px solid var(--border);border-radius:999px;background:#f9fafb;font-weight:600;font-size:.9rem;}
+.required::after{content:" *";color:var(--danger);font-weight:700;}
+.error{font-size:.85rem;color:#b91c1c;}
+
+/* Steps */
+.step{display:flex;align-items:center;gap:10px;}
+.step__n{
+    width:28px;
+    height:28px;
+    border-radius:999px;
+    background:linear-gradient(135deg,var(--primary),#7c83ff);
+    color:#fff;
+    display:grid;
+    place-items:center;
+    font-weight:700;
+    font-size:.9rem;
+}
+
+/* Tabelas */
+.table-wrap{border:1px solid var(--border);border-radius:12px;overflow:auto;background:#fff;}
+.table{border-collapse:collapse;width:100%;}
+.table th,.table td{padding:12px 14px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;}
+.table th{background:#f8fafc;font-weight:700;}
+.row-actions{display:flex;gap:6px;flex-wrap:nowrap;}
+
+/* Kanban */
+.kanban{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+@media (max-width:900px){.kanban{grid-template-columns:1fr;}}
+.kcol h3{margin:8px 0 12px;}
+.kcard{border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:12px;padding:12px;background:#fff;margin-bottom:10px;}
+.kcard.over{border-left-color:var(--danger);}
+.kcard.soon{border-left-color:var(--warn);}
+.kmeta{color:var(--muted);font-size:.9rem;}
+
+/* Modal */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(17,24,39,.55);
+    display:none; /* Hidden by default */
+    align-items:center;
+    justify-content:center;
+    z-index:60;
+    padding:16px;
+}
+.modal__box{
+    background:#fff;
+    border-radius:16px;
+    box-shadow:var(--shadow);
+    max-width:760px;
+    width:100%;
+    max-height:90vh;
+    display:flex;
+    flex-direction:column;
+}
+.modal__hd{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.modal__bd{padding:18px;overflow:auto;}
+.modal__ft{padding:14px 18px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end;background:#f8fafc;}
+
+/* Toast */
+.toast{
+    position:fixed;
+    bottom:16px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:80;
+    display:grid;
+    gap:8px;
+    max-width:min(560px,90vw);
+}
+.toast__item{
+    background:#111827;
+    color:#fff;
+    padding:12px 14px;
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+}
+.toast__item i{margin-top:2px;}
+
+/* Impressão */
+@media print{
+    .header,.tabs,.btn,.modal,.toast{display:none!important;}
+    body{background:#fff;}
+    .card{box-shadow:none;border:1px solid #000;}
+    .no-print{display:none!important;} /* Adicionado para ocultar colunas de ação na impressão */
+}
 </style>
 </head>
 <body>
@@ -373,58 +552,802 @@ a{color:var(--primary)}.hidden{display:none!important}
 <div class="toast" id="toast"></div>
 
 <script>
-(()=>{const $=s=>document.querySelector(s);const $$=s=>Array.from(document.querySelectorAll(s));const STORAGE_KEY='plastimarau_quality_suite_v4';const COLLABORATORS=["João Silva","Maria Oliveira","Carlos Pereira","Ana Costa","Pedro Martins","Juliana Santos","Qualidade","Manutenção","Logística","PCP"];let state={rncs:[],actionPlans:[],currentRNCId:null,currentPlanId:null};const toastBox=$('#toast');function toast(m,i='fa-circle-check'){const el=document.createElement('div');el.className='toast__item';el.innerHTML=`<i class="fa-solid ${i}"></i><div>${m}</div>`;toastBox.appendChild(el);setTimeout(()=>el.remove(),3000)}const debounce=(fn,ms=600)=>{let t;return(...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms)}};function saveState(silent=false){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));$('#saveHint').textContent=`Salvo ${new Date().toLocaleTimeString()}`;if(!silent){}}
-function loadState(){try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const parsed=JSON.parse(raw);state={...state,...parsed}}}catch(e){}}
-const newRNC=()=>({id:`RNC-${Date.now()}`,status:'Aberta',area:'',cliente:'',data:new Date().toISOString().slice(0,10),tipo:'',os:'',item:'',nf:'',lote:'',qtd:'',op:'',dataProd:'',natureza:'',desc:'',fotos:[],ishikawa:{problema:'',maoObra:['',''],materiais:['',''],metodo:['',''],medidas:['',''],meioAmbiente:['',''],maquinas:['','']},actions:[]})
-const newPlan=()=>({id:`PA-${Date.now()}`,title:'Novo Plano de Ação',linkedRNCs:[],actions:[]})
-const newAction=()=>({id:`ACT-${Date.now()}`,what:'',why:'',who:'',where:'',when:'',how:'',howMuch:'',status:'Aberta'})
-function switchTab(id){$$('.tab').forEach(x=>x.classList.remove('is-active'));document.querySelector(`.tab[data-tab="${id}"]`).classList.add('is-active');$$('.section').forEach(s=>s.classList.remove('is-active'));$('#'+id).classList.add('is-active');if(id==='dashboard')renderDashboard();if(id==='records'){renderRncRecords();renderPlanRecords()}}
-$$('.tab').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)))
-function badge(s){if(s==='Aberta')return`<span class="badge badge--open">Aberta</span>`;if(s==='Encerrada')return`<span class="badge badge--done">Encerrada</span>`;return`<span class="badge badge--progress">Em Andamento</span>`}
-function renderDashboard(){const all=(state.actionPlans||[]).flatMap(p=>(p.actions||[]).map(a=>({...a,planTitle:p.title,planId:p.id})));const now=new Date(),soon=new Date(now.getTime()+7*24*60*60*1000);const overdue=all.filter(a=>a.when&&new Date(a.when)<now&&a.status!=='Concluída');const dueSoon=all.filter(a=>a.when&&new Date(a.when)>=now&&new Date(a.when)<=soon&&a.status!=='Concluída');const itm=(a,c='')=>`<div class="kcard ${c}"><strong>${a.what||'(sem título)'}</strong><div class="kmeta">Resp: ${a.who||'-'} • Prazo: ${a.when||'-'}<br>Plano: ${a.planTitle}</div></div>`;$('#dashboard-overdue').innerHTML=overdue.length?overdue.map(a=>itm(a,'over')).join(''):'Nenhuma ação vencida.';$('#dashboard-due-soon').innerHTML=dueSoon.length?dueSoon.map(a=>itm(a,'soon')).join(''):'Nenhuma ação vencendo em breve.';const open=all.filter(a=>a.status==='Aberta'),prog=all.filter(a=>a.status==='Em Andamento'),done=all.filter(a=>a.status==='Concluída');$('#kanban-open').innerHTML=open.length?open.map(a=>itm(a)).join(''):'Sem itens.';$('#kanban-progress').innerHTML=prog.length?prog.map(a=>itm(a)).join(''):'Sem itens.';$('#kanban-done').innerHTML=done.length?done.map(a=>itm(a)).join(''):'Sem itens.'}
-function renderRncRecords(){const tb=$('#rncRecordsTableBody');tb.innerHTML='';(state.rncs||[]).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${r.id.slice(-6)}</td><td>${r.area||'-'}</td><td>${r.cliente||'-'}</td><td>${r.data?new Date(r.data+'T00:00:00').toLocaleDateString():'-'}</td><td>${r.item||'-'}</td><td>${badge(r.status)}</td><td class="row-actions no-print"><button class="btn btn--sm" data-action="view-rnc" data-id="${r.id}"><i class="fa-regular fa-eye"></i></button><button class="btn btn--sm" data-action="edit-rnc" data-id="${r.id}"><i class="fa-solid fa-pen"></i></button><button class="btn btn--sm" data-action="delete-rnc" data-id="${r.id}"><i class="fa-solid fa-trash"></i></button></td>`;tb.appendChild(tr)})}
-function renderPlanRecords(){const tb=$('#planRecordsTableBody');tb.innerHTML='';(state.actionPlans||[]).forEach(p=>{const pend=(p.actions||[]).filter(a=>a.status!=='Concluída').length;const tr=document.createElement('tr');tr.innerHTML=`<td>${p.id.slice(-6)}</td><td>${p.title}</td><td>${(p.linkedRNCs||[]).length}</td><td>${pend} de ${(p.actions||[]).length}</td><td class="row-actions no-print"><button class="btn btn--sm" data-action="view-plan" data-id="${p.id}"><i class="fa-regular fa-eye"></i></button><button class="btn btn--sm" data-action="edit-plan" data-id="${p.id}"><i class="fa-solid fa-pen"></i></button><button class="btn btn--sm" data-action="delete-plan" data-id="${p.id}"><i class="fa-solid fa-trash"></i></button></td>`;tb.appendChild(tr)})}
-function setRNCForm(r){$('#rncArea').value=r.area||'';$('#rncCliente').value=r.cliente||'';$('#rncData').value=r.data||'';$('#rncTipo').value=r.tipo||'';$('#rncOS').value=r.os||'';$('#rncItem').value=r.item||'';$('#rncNF').value=r.nf||'';$('#rncLote').value=r.lote||'';$('#rncQtd').value=r.qtd||'';$('#rncOP').value=r.op||'';$('#rncDataProd').value=r.dataProd||'';$$('input[name="rncNatureza"]').forEach(x=>x.checked=x.value===r.natureza);$('#rncDesc').value=r.desc||'';$('#ishikawaProblema').value=r.ishikawa?.problema||'';const map=[['maoObra','.ish.maoObra'],['materiais','.ish.materiais'],['metodo','.ish.metodo'],['medidas','.ish.medidas'],['meioAmbiente','.ish.meioAmbiente'],['maquinas','.ish.maquinas']];map.forEach(([k,sel])=>{$$(sel).forEach((ta,i)=>ta.value=(r.ishikawa?.[k]||[])[i]||'')});renderFiles(r.fotos||[]);renderImmediate(r.actions||[])}
-function renderFiles(names){const el=$('#fileList');if(!names||!names.length){el.textContent='Nenhum arquivo selecionado.';return}el.innerHTML=names.map(n=>`<div><i class="fa-solid fa-paperclip"></i> ${n}</div>`).join('')}
-function renderImmediate(arr){const tb=$('#immediateActionTableBody');tb.innerHTML='';(arr||[]).forEach(a=>{const tr=document.createElement('tr');tr.innerHTML=`<td><select class="select" data-field="type"><option value="Imediata" ${a.type==='Imediata'?'selected':''}>Imediata</option><option value="Corretiva" ${a.type==='Corretiva'?'selected':''}>Corretiva</option></select></td><td><textarea class="textarea" data-field="description" placeholder="Descreva a ação…">${a.description||''}</textarea></td><td><input class="input" data-field="responsible" value="${a.responsible||''}" placeholder="Responsável"></td><td><input type="date" class="input" data-field="deadline" value="${a.deadline||''}"></td><td class="no-print"><button type="button" class="btn btn--sm btn-remove-immediate"><i class="fa-solid fa-trash"></i></button></td>`;tb.appendChild(tr)})}
-function renderPlanForm(p){$('#planTitle').value=p?p.title||'':'';const box=$('#linkedRNCsDisplay');box.innerHTML='';(p?.linkedRNCs||[]).forEach(id=>{const r=state.rncs.find(x=>x.id===id);if(r){const chip=document.createElement('span');chip.className='chip';chip.innerHTML=`RNC-${r.id.slice(-6)} <button class="btn btn--sm" data-remove-rnc="${r.id}" title="Remover" style="padding:2px 6px;margin-left:6px"><i class="fa-solid fa-xmark"></i></button>`;box.appendChild(chip)}});renderActionList(p)}
-function renderActionList(p){const tb=$('#actionListBody');tb.innerHTML='';(p?.actions||[]).forEach(a=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${a.what||'-'}</td><td>${a.who||'-'}</td><td>${a.when||'-'}</td><td>${a.status||'-'}</td><td class="row-actions no-print"><button class="btn btn--sm" data-action="edit-action" data-id="${a.id}"><i class="fa-solid fa-pen"></i></button><button class="btn btn--sm" data-action="delete-action" data-id="${a.id}"><i class="fa-solid fa-trash"></i></button></td>`;tb.appendChild(tr)})}
-function collectRNC(){const r=state.rncs.find(x=>x.id===state.currentRNCId)||newRNC();r.id=state.currentRNCId||r.id;r.area=$('#rncArea').value;r.cliente=$('#rncCliente').value.trim();r.data=$('#rncData').value;r.tipo=$('#rncTipo').value;r.os=$('#rncOS').value.trim();r.item=$('#rncItem').value.trim();r.nf=$('#rncNF').value.trim();r.lote=$('#rncLote').value.trim();r.qtd=$('#rncQtd').value;r.op=$('#rncOP').value.trim();r.dataProd=$('#rncDataProd').value;const n=document.querySelector('input[name="rncNatureza"]:checked');r.natureza=n?n.value:'';r.desc=$('#rncDesc').value.trim();r.ishikawa.problema=$('#ishikawaProblema').value.trim();r.ishikawa.maoObra=$$('.ish.maoObra').map(t=>t.value.trim());r.ishikawa.materiais=$$('.ish.materiais').map(t=>t.value.trim());r.ishikawa.metodo=$$('.ish.metodo').map(t=>t.value.trim());r.ishikawa.medidas=$$('.ish.medidas').map(t=>t.value.trim());r.ishikawa.meioAmbiente=$$('.ish.meioAmbiente').map(t=>t.value.trim());r.ishikawa.maquinas=$$('.ish.maquinas').map(t=>t.value.trim());r.actions=[];$('#immediateActionTableBody').querySelectorAll('tr').forEach(tr=>{r.actions.push({type:tr.querySelector('[data-field="type"]').value,description:tr.querySelector('[data-field="description"]').value,responsible:tr.querySelector('[data-field="responsible"]').value,deadline:tr.querySelector('[data-field="deadline"]').value})});return r}
-function clearErrors(){$$('[data-err]').forEach(e=>e.textContent='')}
-function requireField(id,label){const v=$(id).value;if(!v){$(`[data-err="${id.slice(1)}"]`).textContent=`${label} é obrigatório.`;return false}return true}
-function validateRNC(){clearErrors();let ok=true;ok&=requireField('#rncArea','Área');ok&=requireField('#rncCliente','Cliente');ok&=requireField('#rncData','Data');ok&=requireField('#rncTipo','Tipo');ok&=requireField('#rncDesc','Descrição');ok&=requireField('#ishikawaProblema','Problema principal');return!!ok}
-$('#btnPrint').addEventListener('click',()=>window.print())
-$('#btnNewRNC,#btnNewRNCFromRecords').forEach?null:0
-$('#btnNewRNC').addEventListener('click',()=>{const r=newRNC();state.currentRNCId=r.id;setRNCForm(r);upsertRNC(r);saveState(true);toast('Nova RNC iniciada.','fa-file-circle-plus');switchTab('rnc')})
-$('#btnNewRNCFromRecords').addEventListener('click',()=>$('#btnNewRNC').click())
-$('#btnSaveRNC').addEventListener('click',()=>{if(!validateRNC()){toast('Preencha os campos obrigatórios.','fa-triangle-exclamation');return}const data=collectRNC();upsertRNC(data);renderRncRecords();toast(`RNC ${data.id.slice(-6)} salva.`)})
-function upsertRNC(r){const i=state.rncs.findIndex=>x.id===r.id);if(i>-1)state.rncs[i]=r;else state.rncs.unshift(r);state.currentRNCId=r.id;saveState(true)}
-const autosaveRNC=debounce(()=>{const r=collectRNC();upsertRNC(r)},800);$('#rnc').addEventListener('input',autosaveRNC)
-$('#rncFotos').addEventListener('change',e=>{const cur=state.rncs.find(x=>x.id===state.currentRNCId);if(!cur)return;cur.fotos=Array.from(e.target.files).map(f=>f.name);renderFiles(cur.fotos);saveState(true)})
-$('#btnAddImmediateAction').addEventListener('click',()=>{const tb=$('#immediateActionTableBody');const tr=document.createElement('tr');tr.innerHTML=`<td><select class="select" data-field="type"><option value="Imediata" selected>Imediata</option><option value="Corretiva">Corretiva</option></select></td><td><textarea class="textarea" data-field="description" placeholder="Descreva a ação…"></textarea></td><td><input class="input" data-field="responsible" placeholder="Responsável"></td><td><input type="date" class="input" data-field="deadline"></td><td class="no-print"><button type="button" class="btn btn--sm btn-remove-immediate"><i class="fa-solid fa-trash"></i></button></td>`;tb.appendChild(tr)})
-$('#immediateActionTableBody').addEventListener('click',e=>{const b=e.target.closest('.btn-remove-immediate');if(b){b.closest('tr').remove();autosaveRNC()}})
-$('#rncRecordsTableBody').addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;const{action,id}=btn.dataset;if(action==='view-rnc'||action==='edit-rnc'){state.currentRNCId=id;const r=state.rncs.find(x=>x.id===id);if(r)setRNCForm(JSON.parse(JSON.stringify(r)));switchTab('rnc')}else if(action==='delete-rnc'){if(confirm(`Excluir RNC ${id.slice(-6)}?`)){state.rncs=state.rncs.filter(x=>x.id!==id);state.actionPlans.forEach(p=>p.linkedRNCs=(p.linkedRNCs||[]).filter(rid=>rid!==id));saveState();renderRncRecords();toast('RNC excluída.','fa-trash')}}})
-function ensurePlanExists(){let p=state.actionPlans.find(x=>x.id===state.currentPlanId);if(!p){p=newPlan();state.actionPlans.push(p);state.currentPlanId=p.id;saveState(true)}return p}
-$('#btnNewPlanMain,#btnNewPlanFromRecords').forEach?null:0
-$('#btnNewPlanMain').addEventListener('click',()=>{const p=newPlan();state.actionPlans.push(p);state.currentPlanId=p.id;saveState();renderPlanForm(p);renderPlanRecords();toast('Plano criado.','fa-plus');switchTab('plans')})
-$('#btnNewPlanFromRecords').addEventListener('click',()=>$('#btnNewPlanMain').click())
-$('#btnSavePlanMain').addEventListener('click',()=>{const p=ensurePlanExists();p.title=$('#planTitle').value.trim()||'Plano sem título';saveState();renderPlanRecords();renderPlanForm(p);toast('Plano salvo.')})
-$('#btnOpenLinkRncModal').addEventListener('click',()=>{const p=ensurePlanExists();populateRncLinkModal(p.linkedRNCs);$('#linkRncModal').style.display='flex'})
-$('#btnCloseLinkRncModal,#btnCancelLinkRnc').addEventListener('click',()=>$('#linkRncModal').style.display='none')
-function populateRncLinkModal(linked=[]){const tb=$('#rncLinkListBody');const hint=$('#noRncHint');tb.innerHTML='';const list=(state.rncs||[]);hint.classList.toggle('hidden',list.length>0);const q=($('#rncSearchInput').value||'').toLowerCase();list.filter(r=>`${r.id} ${r.cliente} ${r.ishikawa?.problema||''}`.toLowerCase().includes(q)).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td><input type="checkbox" value="${r.id}" ${linked.includes(r.id)?'checked':''}></td><td>RNC-${r.id.slice(-6)}</td><td>${r.cliente||'-'}</td><td>${r.ishikawa?.problema||'-'}</td>`;tb.appendChild(tr)})}
-$('#rncSearchInput').addEventListener('input',()=>{const p=state.actionPlans.find(x=>x.id===state.currentPlanId);populateRncLinkModal(p?p.linkedRNCs:[])})
-$('#btnSaveRncLinks').addEventListener('click',()=>{const p=ensurePlanExists();p.linkedRNCs=$$('#rncLinkListBody input[type="checkbox"]:checked').map(i=>i.value);saveState();renderPlanForm(p);$('#linkRncModal').style.display='none';toast('RNCs vinculadas.')})
-$('#linkedRNCsDisplay').addEventListener('click',e=>{const btn=e.target.closest('[data-remove-rnc]');if(!btn)return;const p=ensurePlanExists();p.linkedRNCs=(p.linkedRNCs||[]).filter(id=>id!==btn.dataset.removeRnc);saveState();renderPlanForm(p)})
-$('#btnAddAction5W2H').addEventListener('click',()=>openActionModal(newAction()))
-$('#actionListBody').addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;const{action,id}=btn.dataset;const p=state.actionPlans.find(x=>x.id===state.currentPlanId);if(!p)return;if(action==='edit-action'){const a=p.actions.find(x=>x.id===id);if(a)openActionModal(a)}else if(action==='delete-action'){if(confirm('Excluir ação?')){p.actions=p.actions.filter(x=>x.id!==id);saveState();renderActionList(p);toast('Ação excluída.','fa-trash')}}})
-function openActionModal(a){$('#modalTitle').textContent=a.what?'Editar Ação 5W2H':'Adicionar Ação 5W2H';$('#actionWhat').value=a.what||'';$('#actionWhy').value=a.why||'';$('#actionWho').innerHTML=COLLABORATORS.map(c=>`<option ${c===a.who?'selected':''}>${c}</option>`).join('');$('#actionWhere').value=a.where||'';$('#actionWhen').value=a.when||'';$('#actionHow').value=a.how||'';$('#actionHowMuch').value=a.howMuch||'';$('#actionStatus').value=a.status||'Aberta';$('#actionModal').dataset.editingId=a.id||'';$('#actionModal').style.display='flex'}
-function closeActionModal(){$('#actionModal').style.display='none';$('#actionModal').dataset.editingId=''}
-$('#btnCloseModal,#btnCancelAction').addEventListener('click',closeActionModal)
-$('#btnSaveAction').addEventListener('click',()=>{const p=ensurePlanExists();const editing=$('#actionModal').dataset.editingId;let a=editing?p.actions.find(x=>x.id===editing):null;if(!a){a=newAction();p.actions.push(a)}a.what=$('#actionWhat').value.trim();a.why=$('#actionWhy').value.trim();a.who=$('#actionWho').value;a.where=$('#actionWhere').value.trim();a.when=$('#actionWhen').value;a.how=$('#actionHow').value.trim();a.howMuch=$('#actionHowMuch').value.trim();a.status=$('#actionStatus').value;saveState();renderActionList(p);closeActionModal();toast('Ação salva.')})
-$('#planRecordsTableBody').addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;const{action,id}=btn.dataset;if(action==='view-plan'||action==='edit-plan'){state.currentPlanId=id;const p=state.actionPlans.find(x=>x.id===id);renderPlanForm(JSON.parse(JSON.stringify(p)));switchTab('plans')}else if(action==='delete-plan'){if(confirm(`Excluir plano ${id.slice(-6)}?`)){state.actionPlans=state.actionPlans.filter(x=>x.id!==id);if(state.currentPlanId===id)state.currentPlanId=null;saveState();renderPlanRecords();renderPlanForm(state.actionPlans.find(x=>x.id===state.currentPlanId)||null);toast('Plano excluído.','fa-trash')}}})
-$('#planTitle').addEventListener('input',debounce(()=>{const p=ensurePlanExists();p.title=$('#planTitle').value;saveState(true);renderPlanRecords()},500))
-function fullRender(){renderDashboard();renderRncRecords();renderPlanRecords();const curR=state.rncs.find(x=>x.id===state.currentRNCId)||newRNC();state.currentRNCId=curR.id;setRNCForm(curR);const curP=state.actionPlans.find(x=>x.id===state.currentPlanId);renderPlanForm(curP||null)}
-loadState();fullRender()})()
+(function() {
+    // Atalhos para seletores DOM
+    const $ = s => document.querySelector(s);
+    const $$ = s => Array.from(document.querySelectorAll(s));
+
+    // Chave para armazenamento local
+    const STORAGE_KEY = 'plastimarau_quality_suite_v4';
+
+    // Lista de colaboradores para seleção
+    const COLLABORATORS = ["João Silva", "Maria Oliveira", "Carlos Pereira", "Ana Costa", "Pedro Martins", "Juliana Santos", "Qualidade", "Manutenção", "Logística", "PCP"];
+
+    // Estado global da aplicação
+    let state = {
+        rncs: [],
+        actionPlans: [],
+        currentRNCId: null,
+        currentPlanId: null
+    };
+
+    // Elemento para exibir toasts
+    const toastBox = $('#toast');
+
+    /**
+     * Exibe uma mensagem de toast.
+     * @param {string} message - A mensagem a ser exibida.
+     * @param {string} iconClass - Classe do ícone Font Awesome (ex: 'fa-circle-check').
+     */
+    function toast(message, iconClass = 'fa-circle-check') {
+        const el = document.createElement('div');
+        el.className = 'toast__item';
+        el.innerHTML = `<i class="fa-solid ${iconClass}"></i><div>${message}</div>`;
+        toastBox.appendChild(el);
+        setTimeout(() => el.remove(), 3000);
+    }
+
+    /**
+     * Função debounce para atrasar a execução de uma função.
+     * @param {Function} fn - A função a ser executada.
+     * @param {number} ms - O tempo de atraso em milissegundos.
+     */
+    const debounce = (fn, ms = 600) => {
+        let timeoutId;
+        return (...args) => {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => fn(...args), ms);
+        };
+    };
+
+    /**
+     * Salva o estado atual no localStorage.
+     * @param {boolean} silent - Se true, não atualiza o hint de salvamento.
+     */
+    function saveState(silent = false) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        if (!silent) {
+            $('#saveHint').textContent = `Salvo ${new Date().toLocaleTimeString()}`;
+        }
+    }
+
+    /**
+     * Carrega o estado do localStorage.
+     */
+    function loadState() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (raw) {
+                const parsed = JSON.parse(raw);
+                state = { ...state, ...parsed };
+            }
+        } catch (e) {
+            console.error("Erro ao carregar estado do localStorage:", e);
+        }
+    }
+
+    // Funções de fábrica para novos objetos
+    const newRNC = () => ({
+        id: `RNC-${Date.now()}`,
+        status: 'Aberta',
+        area: '',
+        cliente: '',
+        data: new Date().toISOString().slice(0, 10),
+        tipo: '',
+        os: '',
+        item: '',
+        nf: '',
+        lote: '',
+        qtd: '',
+        op: '',
+        dataProd: '',
+        natureza: '',
+        desc: '',
+        fotos: [],
+        ishikawa: {
+            problema: '',
+            maoObra: ['', ''],
+            materiais: ['', ''],
+            metodo: ['', ''],
+            medidas: ['', ''],
+            meioAmbiente: ['', ''],
+            maquinas: ['', '']
+        },
+        actions: [] // Ações imediatas/contenção
+    });
+
+    const newPlan = () => ({
+        id: `PA-${Date.now()}`,
+        title: 'Novo Plano de Ação',
+        linkedRNCs: [],
+        actions: [] // Ações 5W2H
+    });
+
+    const newAction = () => ({
+        id: `ACT-${Date.now()}`,
+        what: '',
+        why: '',
+        who: '',
+        where: '',
+        when: '',
+        how: '',
+        howMuch: '',
+        status: 'Aberta'
+    });
+
+    /**
+     * Alterna a aba ativa na interface.
+     * @param {string} id - O ID da aba a ser ativada.
+     */
+    function switchTab(id) {
+        $$('.tab').forEach(x => x.classList.remove('is-active'));
+        $(`.tab[data-tab="${id}"]`).classList.add('is-active');
+        $$('.section').forEach(s => s.classList.remove('is-active'));
+        $('#' + id).classList.add('is-active');
+
+        if (id === 'dashboard') renderDashboard();
+        if (id === 'records') {
+            renderRncRecords();
+            renderPlanRecords();
+        }
+    }
+
+    // Adiciona listeners para as abas
+    $$('.tab').forEach(b => b.addEventListener('click', () => switchTab(b.dataset.tab)));
+
+    /**
+     * Retorna o HTML para um badge de status.
+     * @param {string} status - O status (Aberta, Encerrada, Em Andamento).
+     * @returns {string} HTML do badge.
+     */
+    function badge(status) {
+        if (status === 'Aberta') return `<span class="badge badge--open">Aberta</span>`;
+        if (status === 'Concluída') return `<span class="badge badge--done">Concluída</span>`;
+        return `<span class="badge badge--progress">Em Andamento</span>`;
+    }
+
+    /**
+     * Renderiza o dashboard com ações vencidas, vencendo em breve e kanban.
+     */
+    function renderDashboard() {
+        const allActions = (state.actionPlans || []).flatMap(p =>
+            (p.actions || []).map(a => ({ ...a, planTitle: p.title, planId: p.id }))
+        );
+
+        const now = new Date();
+        now.setHours(0, 0, 0, 0); // Normaliza para o início do dia
+        const sevenDaysFromNow = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+
+        const overdue = allActions.filter(a => a.when && new Date(a.when + 'T00:00:00') < now && a.status !== 'Concluída');
+        const dueSoon = allActions.filter(a => a.when && new Date(a.when + 'T00:00:00') >= now && new Date(a.when + 'T00:00:00') <= sevenDaysFromNow && a.status !== 'Concluída');
+
+        const itemCard = (action, className = '') => `
+            <div class="kcard ${className}">
+                <strong>${action.what || '(sem título)'}</strong>
+                <div class="kmeta">
+                    Resp: ${action.who || '-'} • Prazo: ${action.when ? new Date(action.when + 'T00:00:00').toLocaleDateString() : '-'}<br>
+                    Plano: ${action.planTitle}
+                </div>
+            </div>
+        `;
+
+        $('#dashboard-overdue').innerHTML = overdue.length ? overdue.map(a => itemCard(a, 'over')).join('') : 'Nenhuma ação vencida.';
+        $('#dashboard-due-soon').innerHTML = dueSoon.length ? dueSoon.map(a => itemCard(a, 'soon')).join('') : 'Nenhuma ação vencendo em breve.';
+
+        const open = allActions.filter(a => a.status === 'Aberta');
+        const progress = allActions.filter(a => a.status === 'Em Andamento');
+        const done = allActions.filter(a => a.status === 'Concluída');
+
+        $('#kanban-open').innerHTML = open.length ? open.map(a => itemCard(a)).join('') : 'Sem itens.';
+        $('#kanban-progress').innerHTML = progress.length ? progress.map(a => itemCard(a)).join('') : 'Sem itens.';
+        $('#kanban-done').innerHTML = done.length ? done.map(a => itemCard(a)).join('') : 'Sem itens.';
+    }
+
+    /**
+     * Renderiza a tabela de registros de RNCs.
+     */
+    function renderRncRecords() {
+        const tbody = $('#rncRecordsTableBody');
+        tbody.innerHTML = '';
+        (state.rncs || []).forEach(r => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${r.id.slice(-6)}</td>
+                <td>${r.area || '-'}</td>
+                <td>${r.cliente || '-'}</td>
+                <td>${r.data ? new Date(r.data + 'T00:00:00').toLocaleDateString() : '-'}</td>
+                <td>${r.item || '-'}</td>
+                <td>${badge(r.status)}</td>
+                <td class="row-actions no-print">
+                    <button class="btn btn--sm" data-action="view-rnc" data-id="${r.id}" title="Visualizar"><i class="fa-regular fa-eye"></i></button>
+                    <button class="btn btn--sm" data-action="edit-rnc" data-id="${r.id}" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn--sm" data-action="delete-rnc" data-id="${r.id}" title="Excluir"><i class="fa-solid fa-trash"></i></button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    /**
+     * Renderiza a tabela de registros de Planos de Ação.
+     */
+    function renderPlanRecords() {
+        const tbody = $('#planRecordsTableBody');
+        tbody.innerHTML = '';
+        (state.actionPlans || []).forEach(p => {
+            const pendingActions = (p.actions || []).filter(a => a.status !== 'Concluída').length;
+            const totalActions = (p.actions || []).length;
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${p.id.slice(-6)}</td>
+                <td>${p.title}</td>
+                <td>${(p.linkedRNCs || []).length}</td>
+                <td>${pendingActions} de ${totalActions}</td>
+                <td class="row-actions no-print">
+                    <button class="btn btn--sm" data-action="view-plan" data-id="${p.id}" title="Visualizar"><i class="fa-regular fa-eye"></i></button>
+                    <button class="btn btn--sm" data-action="edit-plan" data-id="${p.id}" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn--sm" data-action="delete-plan" data-id="${p.id}" title="Excluir"><i class="fa-solid fa-trash"></i></button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    /**
+     * Preenche o formulário de RNC com os dados de uma RNC.
+     * @param {object} r - O objeto RNC.
+     */
+    function setRNCForm(r) {
+        $('#rncArea').value = r.area || '';
+        $('#rncCliente').value = r.cliente || '';
+        $('#rncData').value = r.data || '';
+        $('#rncTipo').value = r.tipo || '';
+        $('#rncOS').value = r.os || '';
+        $('#rncItem').value = r.item || '';
+        $('#rncNF').value = r.nf || '';
+        $('#rncLote').value = r.lote || '';
+        $('#rncQtd').value = r.qtd || '';
+        $('#rncOP').value = r.op || '';
+        $('#rncDataProd').value = r.dataProd || '';
+        $$('input[name="rncNatureza"]').forEach(x => x.checked = (x.value === r.natureza));
+        $('#rncDesc').value = r.desc || '';
+        $('#ishikawaProblema').value = r.ishikawa?.problema || '';
+
+        const ishikawaMap = [
+            ['maoObra', '.ish.maoObra'],
+            ['materiais', '.ish.materiais'],
+            ['metodo', '.ish.metodo'],
+            ['medidas', '.ish.medidas'],
+            ['meioAmbiente', '.ish.meioAmbiente'],
+            ['maquinas', '.ish.maquinas']
+        ];
+        ishikawaMap.forEach(([key, selector]) => {
+            $$(selector).forEach((textarea, i) => textarea.value = (r.ishikawa?.[key] || [])[i] || '');
+        });
+
+        renderFiles(r.fotos || []);
+        renderImmediateActions(r.actions || []);
+    }
+
+    /**
+     * Renderiza a lista de arquivos anexados.
+     * @param {string[]} names - Nomes dos arquivos.
+     */
+    function renderFiles(names) {
+        const el = $('#fileList');
+        if (!names || !names.length) {
+            el.textContent = 'Nenhum arquivo selecionado.';
+            return;
+        }
+        el.innerHTML = names.map(n => `<div><i class="fa-solid fa-paperclip"></i> ${n}</div>`).join('');
+    }
+
+    /**
+     * Renderiza a tabela de ações imediatas/contenção.
+     * @param {object[]} actions - Array de ações.
+     */
+    function renderImmediateActions(actions) {
+        const tbody = $('#immediateActionTableBody');
+        tbody.innerHTML = '';
+        (actions || []).forEach(a => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>
+                    <select class="select" data-field="type">
+                        <option value="Imediata" ${a.type === 'Imediata' ? 'selected' : ''}>Imediata</option>
+                        <option value="Corretiva" ${a.type === 'Corretiva' ? 'selected' : ''}>Corretiva</option>
+                    </select>
+                </td>
+                <td><textarea class="textarea" data-field="description" placeholder="Descreva a ação…">${a.description || ''}</textarea></td>
+                <td><input class="input" data-field="responsible" value="${a.responsible || ''}" placeholder="Responsável"></td>
+                <td><input type="date" class="input" data-field="deadline" value="${a.deadline || ''}"></td>
+                <td class="no-print"><button type="button" class="btn btn--sm btn-remove-immediate" title="Remover Ação"><i class="fa-solid fa-trash"></i></button></td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    /**
+     * Preenche o formulário de Plano de Ação com os dados de um plano.
+     * @param {object} p - O objeto Plano de Ação.
+     */
+    function renderPlanForm(p) {
+        $('#planTitle').value = p ? p.title || '' : '';
+        const linkedRNCsDisplay = $('#linkedRNCsDisplay');
+        linkedRNCsDisplay.innerHTML = '';
+        (p?.linkedRNCs || []).forEach(id => {
+            const r = state.rncs.find(x => x.id === id);
+            if (r) {
+                const chip = document.createElement('span');
+                chip.className = 'chip';
+                chip.innerHTML = `RNC-${r.id.slice(-6)} <button class="btn btn--sm" data-remove-rnc="${r.id}" title="Remover" style="padding:2px 6px;margin-left:6px"><i class="fa-solid fa-xmark"></i></button>`;
+                linkedRNCsDisplay.appendChild(chip);
+            }
+        });
+        renderActionList(p);
+    }
+
+    /**
+     * Renderiza a lista de ações 5W2H para um plano.
+     * @param {object} p - O objeto Plano de Ação.
+     */
+    function renderActionList(p) {
+        const tbody = $('#actionListBody');
+        tbody.innerHTML = '';
+        (p?.actions || []).forEach(a => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${a.what || '-'}</td>
+                <td>${a.who || '-'}</td>
+                <td>${a.when ? new Date(a.when + 'T00:00:00').toLocaleDateString() : '-'}</td>
+                <td>${badge(a.status)}</td>
+                <td class="row-actions no-print">
+                    <button class="btn btn--sm" data-action="edit-action" data-id="${a.id}" title="Editar Ação"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn--sm" data-action="delete-action" data-id="${a.id}" title="Excluir Ação"><i class="fa-solid fa-trash"></i></button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    /**
+     * Coleta os dados do formulário de RNC.
+     * @returns {object} O objeto RNC preenchido.
+     */
+    function collectRNC() {
+        const r = state.rncs.find(x => x.id === state.currentRNCId) || newRNC();
+        r.id = state.currentRNCId || r.id; // Garante que o ID seja mantido ou gerado
+        r.area = $('#rncArea').value;
+        r.cliente = $('#rncCliente').value.trim();
+        r.data = $('#rncData').value;
+        r.tipo = $('#rncTipo').value;
+        r.os = $('#rncOS').value.trim();
+        r.item = $('#rncItem').value.trim();
+        r.nf = $('#rncNF').value.trim();
+        r.lote = $('#rncLote').value.trim();
+        r.qtd = $('#rncQtd').value;
+        r.op = $('#rncOP').value.trim();
+        r.dataProd = $('#rncDataProd').value;
+        const naturezaChecked = document.querySelector('input[name="rncNatureza"]:checked');
+        r.natureza = naturezaChecked ? naturezaChecked.value : '';
+        r.desc = $('#rncDesc').value.trim();
+
+        r.ishikawa.problema = $('#ishikawaProblema').value.trim();
+        r.ishikawa.maoObra = $$('.ish.maoObra').map(t => t.value.trim());
+        r.ishikawa.materiais = $$('.ish.materiais').map(t => t.value.trim());
+        r.ishikawa.metodo = $$('.ish.metodo').map(t => t.value.trim());
+        r.ishikawa.medidas = $$('.ish.medidas').map(t => t.value.trim());
+        r.ishikawa.meioAmbiente = $$('.ish.meioAmbiente').map(t => t.value.trim());
+        r.ishikawa.maquinas = $$('.ish.maquinas').map(t => t.value.trim());
+
+        r.actions = []; // Limpa e recria as ações imediatas
+        $('#immediateActionTableBody').querySelectorAll('tr').forEach(tr => {
+            r.actions.push({
+                type: tr.querySelector('[data-field="type"]').value,
+                description: tr.querySelector('[data-field="description"]').value,
+                responsible: tr.querySelector('[data-field="responsible"]').value,
+                deadline: tr.querySelector('[data-field="deadline"]').value
+            });
+        });
+        return r;
+    }
+
+    /**
+     * Limpa todas as mensagens de erro do formulário.
+     */
+    function clearErrors() {
+        $$('[data-err]').forEach(e => e.textContent = '');
+    }
+
+    /**
+     * Valida se um campo obrigatório está preenchido.
+     * @param {string} id - O ID do campo.
+     * @param {string} label - O rótulo do campo para a mensagem de erro.
+     * @returns {boolean} True se o campo estiver preenchido, false caso contrário.
+     */
+    function requireField(id, label) {
+        const value = $(id).value;
+        if (!value) {
+            $(`[data-err="${id.slice(1)}"]`).textContent = `${label} é obrigatório.`;
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Valida o formulário de RNC.
+     * @returns {boolean} True se o formulário for válido, false caso contrário.
+     */
+    function validateRNC() {
+        clearErrors();
+        let isValid = true;
+        isValid &= requireField('#rncArea', 'Área');
+        isValid &= requireField('#rncCliente', 'Cliente');
+        isValid &= requireField('#rncData', 'Data');
+        isValid &= requireField('#rncTipo', 'Tipo');
+        isValid &= requireField('#rncDesc', 'Descrição');
+        isValid &= requireField('#ishikawaProblema', 'Problema principal');
+        return !!isValid; // Converte para booleano
+    }
+
+    // Event Listeners Globais
+    $('#btnPrint').addEventListener('click', () => window.print());
+
+    // Botões de Nova RNC
+    $('#btnNewRNC').addEventListener('click', () => {
+        const r = newRNC();
+        state.currentRNCId = r.id;
+        setRNCForm(r);
+        upsertRNC(r); // Adiciona a nova RNC ao estado
+        saveState(true);
+        toast('Nova RNC iniciada.', 'fa-file-circle-plus');
+        switchTab('rnc');
+    });
+    // O botão de "Nova RNC" na aba de registros apenas aciona o botão principal
+    $('#btnNewRNCFromRecords').addEventListener('click', () => $('#btnNewRNC').click());
+
+    // Salvar RNC
+    $('#btnSaveRNC').addEventListener('click', () => {
+        if (!validateRNC()) {
+            toast('Preencha os campos obrigatórios.', 'fa-triangle-exclamation');
+            return;
+        }
+        const data = collectRNC();
+        upsertRNC(data);
+        renderRncRecords();
+        toast(`RNC ${data.id.slice(-6)} salva.`);
+    });
+
+    /**
+     * Adiciona ou atualiza uma RNC no estado.
+     * @param {object} r - O objeto RNC a ser salvo.
+     */
+    function upsertRNC(r) {
+        const index = state.rncs.findIndex(x => x.id === r.id);
+        if (index > -1) {
+            state.rncs[index] = r;
+        } else {
+            state.rncs.unshift(r); // Adiciona no início para aparecer primeiro
+        }
+        state.currentRNCId = r.id;
+        saveState(true);
+    }
+
+    // Autosave para o formulário de RNC
+    const autosaveRNC = debounce(() => {
+        const r = collectRNC();
+        upsertRNC(r);
+    }, 800);
+    $('#rnc').addEventListener('input', autosaveRNC);
+
+    // Lidar com upload de fotos
+    $('#rncFotos').addEventListener('change', e => {
+        const currentRNC = state.rncs.find(x => x.id === state.currentRNCId);
+        if (!currentRNC) return;
+        currentRNC.fotos = Array.from(e.target.files).map(f => f.name);
+        renderFiles(currentRNC.fotos);
+        saveState(true);
+    });
+
+    // Adicionar ação imediata
+    $('#btnAddImmediateAction').addEventListener('click', () => {
+        const tbody = $('#immediateActionTableBody');
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>
+                <select class="select" data-field="type">
+                    <option value="Imediata" selected>Imediata</option>
+                    <option value="Corretiva">Corretiva</option>
+                </select>
+            </td>
+            <td><textarea class="textarea" data-field="description" placeholder="Descreva a ação…"></textarea></td>
+            <td><input class="input" data-field="responsible" placeholder="Responsável"></td>
+            <td><input type="date" class="input" data-field="deadline"></td>
+            <td class="no-print"><button type="button" class="btn btn--sm btn-remove-immediate" title="Remover Ação"><i class="fa-solid fa-trash"></i></button></td>
+        `;
+        tbody.appendChild(tr);
+    });
+
+    // Remover ação imediata (delegação de evento)
+    $('#immediateActionTableBody').addEventListener('click', e => {
+        const button = e.target.closest('.btn-remove-immediate');
+        if (button) {
+            button.closest('tr').remove();
+            autosaveRNC(); // Salva após remover
+        }
+    });
+
+    // Ações na tabela de registros de RNC
+    $('#rncRecordsTableBody').addEventListener('click', e => {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+        const { action, id } = btn.dataset;
+
+        if (action === 'view-rnc' || action === 'edit-rnc') {
+            state.currentRNCId = id;
+            const rnc = state.rncs.find(x => x.id === id);
+            if (rnc) {
+                // Cria uma cópia profunda para evitar modificações diretas no estado antes de salvar
+                setRNCForm(JSON.parse(JSON.stringify(rnc)));
+            }
+            switchTab('rnc');
+        } else if (action === 'delete-rnc') {
+            if (confirm(`Tem certeza que deseja excluir a RNC ${id.slice(-6)}?`)) {
+                state.rncs = state.rncs.filter(x => x.id !== id);
+                // Remove a RNC de qualquer plano de ação vinculado
+                state.actionPlans.forEach(p => p.linkedRNCs = (p.linkedRNCs || []).filter(rncId => rncId !== id));
+                saveState();
+                renderRncRecords();
+                toast('RNC excluída.', 'fa-trash');
+            }
+        }
+    });
+
+    /**
+     * Garante que um plano de ação exista ou cria um novo se não houver um currentPlanId.
+     * @returns {object} O plano de ação atual ou recém-criado.
+     */
+    function ensurePlanExists() {
+        let plan = state.actionPlans.find(x => x.id === state.currentPlanId);
+        if (!plan) {
+            plan = newPlan();
+            state.actionPlans.push(plan);
+            state.currentPlanId = plan.id;
+            saveState(true);
+        }
+        return plan;
+    }
+
+    // Botões de Novo Plano de Ação
+    $('#btnNewPlanMain').addEventListener('click', () => {
+        const p = newPlan();
+        state.actionPlans.push(p);
+        state.currentPlanId = p.id;
+        saveState();
+        renderPlanForm(p);
+        renderPlanRecords();
+        toast('Plano criado.', 'fa-plus');
+        switchTab('plans');
+    });
+    // O botão de "Novo Plano" na aba de registros apenas aciona o botão principal
+    $('#btnNewPlanFromRecords').addEventListener('click', () => $('#btnNewPlanMain').click());
+
+    // Salvar Plano de Ação principal
+    $('#btnSavePlanMain').addEventListener('click', () => {
+        const p = ensurePlanExists();
+        p.title = $('#planTitle').value.trim() || 'Plano sem título';
+        saveState();
+        renderPlanRecords();
+        renderPlanForm(p);
+        toast('Plano salvo.');
+    });
+
+    // Abrir modal de vincular RNCs
+    $('#btnOpenLinkRncModal').addEventListener('click', () => {
+        const p = ensurePlanExists();
+        populateRncLinkModal(p.linkedRNCs);
+        $('#linkRncModal').style.display = 'flex';
+    });
+
+    // Fechar modal de vincular RNCs
+    $('#btnCloseLinkRncModal').addEventListener('click', () => $('#linkRncModal').style.display = 'none');
+    $('#btnCancelLinkRnc').addEventListener('click', () => $('#linkRncModal').style.display = 'none');
+
+    /**
+     * Preenche o modal de vinculação de RNCs.
+     * @param {string[]} linked - IDs das RNCs já vinculadas.
+     */
+    function populateRncLinkModal(linked = []) {
+        const tbody = $('#rncLinkListBody');
+        const noRncHint = $('#noRncHint');
+        tbody.innerHTML = '';
+        const allRNCs = (state.rncs || []);
+        noRncHint.classList.toggle('hidden', allRNCs.length > 0);
+
+        const searchQuery = ($('#rncSearchInput').value || '').toLowerCase();
+
+        allRNCs
+            .filter(r => `${r.id} ${r.cliente} ${r.ishikawa?.problema || ''}`.toLowerCase().includes(searchQuery))
+            .forEach(r => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><input type="checkbox" value="${r.id}" ${linked.includes(r.id) ? 'checked' : ''}></td>
+                    <td>RNC-${r.id.slice(-6)}</td>
+                    <td>${r.cliente || '-'}</td>
+                    <td>${r.ishikawa?.problema || '-'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+    }
+
+    // Filtrar RNCs no modal de vinculação
+    $('#rncSearchInput').addEventListener('input', () => {
+        const p = state.actionPlans.find(x => x.id === state.currentPlanId);
+        populateRncLinkModal(p ? p.linkedRNCs : []);
+    });
+
+    // Salvar vínculos de RNCs
+    $('#btnSaveRncLinks').addEventListener('click', () => {
+        const p = ensurePlanExists();
+        p.linkedRNCs = $$('#rncLinkListBody input[type="checkbox"]:checked').map(input => input.value);
+        saveState();
+        renderPlanForm(p);
+        $('#linkRncModal').style.display = 'none';
+        toast('RNCs vinculadas.');
+    });
+
+    // Remover RNC vinculada diretamente do chip
+    $('#linkedRNCsDisplay').addEventListener('click', e => {
+        const btn = e.target.closest('[data-remove-rnc]');
+        if (!btn) return;
+        const p = ensurePlanExists();
+        p.linkedRNCs = (p.linkedRNCs || []).filter(id => id !== btn.dataset.removeRnc);
+        saveState();
+        renderPlanForm(p);
+        toast('RNC desvinculada.');
+    });
+
+    // Adicionar Ação 5W2H
+    $('#btnAddAction5W2H').addEventListener('click', () => openActionModal(newAction()));
+
+    // Ações na tabela de ações 5W2H (editar/excluir)
+    $('#actionListBody').addEventListener('click', e => {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+        const { action, id } = btn.dataset;
+        const p = state.actionPlans.find(x => x.id === state.currentPlanId);
+        if (!p) return;
+
+        if (action === 'edit-action') {
+            const act = p.actions.find(x => x.id === id);
+            if (act) openActionModal(act);
+        } else if (action === 'delete-action') {
+            if (confirm('Tem certeza que deseja excluir esta ação?')) {
+                p.actions = p.actions.filter(x => x.id !== id);
+                saveState();
+                renderActionList(p);
+                toast('Ação excluída.', 'fa-trash');
+            }
+        }
+    });
+
+    /**
+     * Abre o modal de edição/criação de ação 5W2H.
+     * @param {object} action - O objeto ação a ser editado ou um novo objeto ação.
+     */
+    function openActionModal(action) {
+        $('#modalTitle').textContent = action.what ? 'Editar Ação 5W2H' : 'Adicionar Ação 5W2H';
+        $('#actionWhat').value = action.what || '';
+        $('#actionWhy').value = action.why || '';
+        $('#actionWho').innerHTML = COLLABORATORS.map(c => `<option ${c === action.who ? 'selected' : ''}>${c}</option>`).join('');
+        $('#actionWhere').value = action.where || '';
+        $('#actionWhen').value = action.when || '';
+        $('#actionHow').value = action.how || '';
+        $('#actionHowMuch').value = action.howMuch || '';
+        $('#actionStatus').value = action.status || 'Aberta';
+        $('#actionModal').dataset.editingId = action.id || '';
+        $('#actionModal').style.display = 'flex';
+    }
+
+    /**
+     * Fecha o modal de ação 5W2H.
+     */
+    function closeActionModal() {
+        $('#actionModal').style.display = 'none';
+        $('#actionModal').dataset.editingId = '';
+    }
+
+    // Fechar modal de ação
+    $('#btnCloseModal').addEventListener('click', closeActionModal);
+    $('#btnCancelAction').addEventListener('click', closeActionModal);
+
+    // Salvar Ação 5W2H
+    $('#btnSaveAction').addEventListener('click', () => {
+        const p = ensurePlanExists();
+        const editingId = $('#actionModal').dataset.editingId;
+        let action = editingId ? p.actions.find(x => x.id === editingId) : null;
+
+        if (!action) {
+            action = newAction();
+            p.actions.push(action);
+        }
+
+        action.what = $('#actionWhat').value.trim();
+        action.why = $('#actionWhy').value.trim();
+        action.who = $('#actionWho').value;
+        action.where = $('#actionWhere').value.trim();
+        action.when = $('#actionWhen').value;
+        action.how = $('#actionHow').value.trim();
+        action.howMuch = $('#actionHowMuch').value.trim();
+        action.status = $('#actionStatus').value;
+
+        saveState();
+        renderActionList(p);
+        closeActionModal();
+        toast('Ação salva.');
+    });
+
+    // Ações na tabela de registros de Planos de Ação
+    $('#planRecordsTableBody').addEventListener('click', e => {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+        const { action, id } = btn.dataset;
+
+        if (action === 'view-plan' || action === 'edit-plan') {
+            state.currentPlanId = id;
+            const plan = state.actionPlans.find(x => x.id === id);
+            // Cria uma cópia profunda para evitar modificações diretas no estado antes de salvar
+            renderPlanForm(JSON.parse(JSON.stringify(plan)));
+            switchTab('plans');
+        } else if (action === 'delete-plan') {
+            if (confirm(`Tem certeza que deseja excluir o plano ${id.slice(-6)}?`)) {
+                state.actionPlans = state.actionPlans.filter(x => x.id !== id);
+                if (state.currentPlanId === id) {
+                    state.currentPlanId = null; // Limpa o plano atual se ele foi excluído
+                }
+                saveState();
+                renderPlanRecords();
+                // Renderiza o formulário do plano, talvez com um plano vazio ou o primeiro disponível
+                renderPlanForm(state.actionPlans.find(x => x.id === state.currentPlanId) || null);
+                toast('Plano excluído.', 'fa-trash');
+            }
+        }
+    });
+
+    // Autosave para o título do plano
+    $('#planTitle').addEventListener('input', debounce(() => {
+        const p = ensurePlanExists();
+        p.title = $('#planTitle').value;
+        saveState(true);
+        renderPlanRecords(); // Atualiza a lista de planos nos registros
+    }, 500));
+
+    /**
+     * Realiza a renderização completa da interface.
+     */
+    function fullRender() {
+        renderDashboard();
+        renderRncRecords();
+        renderPlanRecords();
+
+        // Inicializa o formulário de RNC
+        const currentRNC = state.rncs.find(x => x.id === state.currentRNCId) || newRNC();
+        state.currentRNCId = currentRNC.id; // Garante que sempre haja um currentRNCId
+        setRNCForm(currentRNC);
+        // Se a nova RNC não estava no estado, adiciona
+        if (!state.rncs.some(r => r.id === currentRNC.id)) {
+            upsertRNC(currentRNC);
+        }
+
+        // Inicializa o formulário de Plano de Ação
+        const currentPlan = state.actionPlans.find(x => x.id === state.currentPlanId);
+        renderPlanForm(currentPlan || null); // Passa null se não houver plano atual
+    }
+
+    // Carrega o estado e renderiza a interface ao iniciar
+    loadState();
+    fullRender();
+})();
 </script>
 </body>
 </html>
