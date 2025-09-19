@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestão de Qualidade — Plastimarau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--primary:#4f46e5;--primary2:#4338ca;--ok:#10b981;--warn:#f59e0b;--danger:#ef4444;--bg:#f7f7fb;--card:#fff;--muted:#6b7280;--border:#e5e7eb;--shadow:0 8px 24px rgba(17,24,39,.08);--r:12px;--pad:20px;--max:1200px}
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:#111827;line-height:1.45}
+a{color:var(--primary)}.hidden{display:none!important}
+.header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.7);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.header__in{max-width:var(--max);margin:0 auto;padding:12px var(--pad);display:flex;gap:12px;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px}
+.brand__logo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--primary),#7c83ff);display:grid;place-items:center;color:#fff}
+.brand__title{font-weight:700}
+.header__right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.badge-dot{display:flex;align-items:center;gap:8px;background:#f3f4f6;border:1px solid var(--border);color:#374151;border-radius:999px;padding:6px 10px;font-size:12px}
+.badge-dot i{color:var(--ok)}
+.btn{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--border);background:#fff;padding:10px 14px;border-radius:10px;font-weight:600;cursor:pointer;transition:.2s}
+.btn:hover{box-shadow:var(--shadow)}
+.btn--primary{background:var(--primary);border-color:var(--primary);color:#fff}
+.btn--ghost{background:transparent;border-color:transparent;color:#374151}
+.btn--sm{padding:8px 10px;font-size:.925rem}
+.btn[disabled]{opacity:.6;cursor:not-allowed}
+.main{max-width:var(--max);margin:0 auto;padding:20px var(--pad) 60px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--border);margin-bottom:16px}
+.tab{appearance:none;border:none;background:transparent;padding:12px 14px;border-bottom:2px solid transparent;color:#6b7280;font-weight:700;cursor:pointer}
+.tab.is-active{color:var(--primary);border-bottom-color:var(--primary)}
+.section{display:none}.section.is-active{display:block}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.card__hd{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;justify-content:space-between}
+.card__title{font-weight:700}
+.card__bd{padding:18px}
+.grid{display:grid;gap:16px}
+.grid--2{grid-template-columns:repeat(2,minma0,1fr))}
+.grid--3{grid-template-columns:repeat(3,minma0,1fr))}
+@media (max-width:900px){.grid--3,.grid--2{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:8px}
+.label{font-weight:700;font-size:.95rem}
+.help{color:var(--muted);font-size:.86rem}
+.input,.select,.textarea{width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;background:#fff}
+.input:focus,.select:focus,.textarea:focus{outline:none;box-shadow:0 0 0 3px rgba(79,70,229,.15);border-color:var(--primary)}
+.textarea{min-height:110px;resize:vertical}
+.row{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minma220px,1fr))}
+.inline{display:flex;gap:10px;flex-wrap:wrap}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{padding:8px 10px;border:1px solid var(--border);border-radius:999px;background:#f9fafb;font-weight:600;font-size:.9rem}
+.required::after{content:" *";color:var(--danger);font-weight:700}
+.error{font-size:.85rem;color:#b91c1c}
+.step{display:flex;align-items:center;gap:10px}
+.step__n{width:28px;height:28px;border-radius:999px;background:linear-gradient(135deg,var(--primary),#7c83ff);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.9rem}
+.table-wrap{border:1px solid var(--border);border-radius:12px;overflow:auto;background:#fff}
+.table{border-collapse:collapse;width:100%}
+.table th,.table td{padding:12px 14px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+.table th{background:#f8fafc;font-weight:700}
+.row-actions{display:flex;gap:6px;flex-wrap:nowrap}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;border:1px solid}
+.badge--open{background:#fff7ed;color:#9a3412;border-color:#fed7aa}
+.badge--done{background:#ecfeff;color:#065f46;border-color:#99f6e4}
+.badge--progress{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}
+.kanban{display:grid;grid-template-columns:repeat(3,minma0,1fr));gap:16px}
+@media (max-width:900px){.kanban{grid-template-columns:1fr}}
+.kcol h3{margin:8px 0 12px}
+.kcard{border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:12px;padding:12px;background:#fff;margin-bottom:10px}
+.kcard.over{border-left-color:var(--danger)}.kcard.soon{border-left-color:var(--warn)}
+.kmeta{color:var(--muted);font-size:.9rem}
+.modal{position:fixed;inset:0;background:rgba(17,24,39,.55);display:none;align-items:center;justify-content:center;z-index:60;padding:16px}
+.modal__box{background:#fff;border-radius:16px;box-shadow:var(--shadow);max-width:760px;width:100%;max-height:90vh;display:flex;flex-direction:column}
+.modal__hd{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.modal__bd{padding:18px;overflow:auto}
+.modal__ft{padding:14px 18px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end;background:#f8fafc}
+.toast{position:fixed;bottom:16px;left:50%;transform:translate-50%);z-index:80;display:grid;gap:8px;max-width:min(560px,90vw)}
+.toast__item{background:#111827;color:#fff;padding:12px 14px;border-radius:12px;box-shadow:var(--shadow);display:flex;gap:10px;align-items:flex-start}
+.toast__item i{margin-top:2px}
+@media print{.header,.tabs,.btn,.modal,.toast{display:none!important}body{background:#fff}.card{box-shadow:none;border:1px solid #000}}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="header__in">
+    <div class="brand">
+      <div class="brand__logo"><i class="fa-solid fa-clipboard-check"></i></div>
+      <div>
+        <div class="brand__title">Gestão de Qualidade</div>
+        <div style="font-size:.85rem;color:var(--muted)">Plastimarau</div>
+      </div>
+    </div>
+    <div class="header__right">
+      <div class="badge-dot"><i class="fa-solid fa-circle-dot"></i><span id="saveHint">Pronto</span></div>
+      <button class="btn btn--primary" id="btnSaveRNC"><i class="fa-solid fa-floppy-disk"></i>Salvar RNC</button>
+      <button class="btn" id="btnNewRNC"><i class="fa-solid fa-file-circle-plus"></i>Nova RNC</button>
+      <button class="btn btn--ghost" id="btnPrint"><i class="fa-solid fa-print"></i>Imprimir</button>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+  <div class="tabs" role="tablist">
+    <button class="tab is-active" data-tab="dashboard" role="tab">Dashboard</button>
+    <button class="tab" data-tab="rnc" role="tab">Registro RNC</button>
+    <button class="tab" data-tab="plans" role="tab">Plano de Ação (5W2H)</button>
+    <button class="tab" data-tab="records" role="tab">Registros</button>
+  </div>
+
+  <section id="dashboard" class="section is-active" role="tabpanel">
+    <div class="grid grid--2">
+      <div class="card">
+        <div class="card__hd"><div class="card__title"><i class="fa-solid fa-triangle-exclamation" style="color:var(--danger)"></i> Ações vencidas</div></div>
+        <div class="card__bd" id="dashboard-overdue"></div>
+      </div>
+      <div class="card">
+        <div class="card__hd"><div class="card__title"><i class="fa-solid fa-hourglass-half" style="color:var(--warn)"></i> Vencem em 7 dias</div></div>
+        <div class="card__bd" id="dashboard-due-soon"></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="card__hd"><div class="card__title"><i class="fa-solid fa-list-check" style="color:var(--primary)"></i> Kanban de Ações</div></div>
+      <div class="card__bd">
+        <div class="kanban">
+          <div class="kcol"><h3><i class="fa-regular fa-circle"></i> A Fazer</h3><div id="kanban-open"></div></div>
+          <div class="kcol"><h3><i class="fa-solid fa-person-digging"></i> Em Andamento</h3><div id="kanban-progress"></div></div>
+          <div class="kcol"><h3><i class="fa-solid fa-circle-check"></i> Concluído</h3><div id="kanban-done"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rnc" class="section" role="tabpanel">
+    <form id="rncForm" novalidate>
+      <div class="card" style="margin-bottom:16px">
+        <div class="card__hd">
+          <div class="step"><div class="step__n">1</div><div class="card__title">Identificação da Ocorrência</div></div>
+        </div>
+        <div class="card__bd grid">
+          <div class="row">
+            <div class="field">
+              <label class="label required" for="rncArea">Área</label>
+              <select id="rncArea" class="select" required>
+                <option value="">Selecione…</option>
+                <option>Produção</option><option>Logística</option><option>Qualidade</option><option>Comercial</option><option>Engenharia</option><option>Suprimentos</option><option>Manutenção</option><option>PCP</option>
+              </select>
+              <div class="error" data-err="rncArea"></div>
+            </div>
+            <div class="field">
+              <label class="label required" for="rncCliente">Cliente</label>
+              <input id="rncCliente" class="input" required placeholder="Razão social">
+              <div class="error" data-err="rncCliente"></div>
+            </div>
+            <div class="field">
+              <label class="label required" for="rncData">Data</label>
+              <input id="rncData" type="date" class="input" required>
+              <div class="error" data-err="rncData"></div>
+            </div>
+            <div class="field">
+              <label class="label required" for="rncTipo">Tipo</label>
+              <select id="rncTipo" class="select" required>
+                <option value="">Selecione…</option>
+                <option value="RECLI">Reclamação de Cliente</option>
+                <option value="OM">Oportunidade de Melhoria</option>
+              </select>
+              <div class="error" data-err="rncTipo"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field"><label class="label" for="rncOS">Ordem de Serviço</label><input id="rncOS" class="input"></div>
+            <div class="field"><label class="label" for="rncItem">Item / Produto</label><input id="rncItem" class="input"></div>
+            <div class="field"><label class="label" for="rncNF">Nota Fiscal</label><input id="rncNF" class="input"></div>
+            <div class="field"><label class="label" for="rncLote">Lote</label><input id="rncLote" class="input"></div>
+          </div>
+          <div class="row">
+            <div class="field"><label class="label" for="rncQtd">Quantidade afetada</label><input id="rncQtd" type="number" class="input"></div>
+            <div class="field"><label class="label" for="rncOP">Ordem de Produção</label><input id="rncOP" class="input"></div>
+            <div class="field"><label class="label" for="rncDataProd">Data de Produção</label><input id="rncDataProd" type="date" class="input"></div>
+          </div>
+          <div class="field">
+            <label class="label">Natureza da Ocorrência</label>
+            <div class="inline">
+              <label class="chip"><input type="radio" name="rncNatureza" value="Reclamacao"> Reclamação do Cliente</label>
+              <label class="chip"><input type="radio" name="rncNatureza" value="Devolucao"> Devolução de Produto</label>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Fotos</label>
+            <input id="rncFotos" type="file" multiple class="input">
+            <div id="fileList" class="help">Nenhum arquivo selecionado.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px">
+        <div class="card__hd">
+          <div class="step"><div class="step__n">2</div><div class="card__title">Descrição da Não Conformidade</div></div>
+        </div>
+        <div class="card__bd grid">
+          <div class="field">
+            <label class="label required" for="rncDesc">Descrição</label>
+            <textarea id="rncDesc" class="textarea" required placeholder="Descreva claramente o ocorrido, com contexto e evidências"></textarea>
+            <div class="error" data-err="rncDesc"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px">
+        <div class="card__hd">
+          <div class="step"><div class="step__n">3</div><div class="card__title">Análise de Causa Raiz — Ishikawa (6M)</div></div>
+        </div>
+        <div class="card__bd grid">
+          <div class="field">
+            <label class="label required" for="ishikawaProblema">Problema principal</label>
+            <textarea id="ishikawaProblema" class="textarea" required placeholder="Defina claramente o problema"></textarea>
+            <div class="error" data-err="ishikawaProblema"></div>
+          </div>
+          <div class="grid grid--3">
+            <div class="field"><label class="label">\uD83D\uDC65 Mão de Obra</label><textarea class="textarea ish maoObra" placeholder="Causa possível…"></textarea><textarea class="textarea ish maoObra" placeholder="Outra…"></textarea></div>
+            <div class="field"><label class="label">\uD83D\uDCE6 Materiais</label><textarea class="textarea ish materiais" placeholder="Causa possível…"></textarea><textarea class="textarea ish materiais" placeholder="Outra…"></textarea></div>
+            <div class="field"><label class="label">⚙️ Método</label><textarea class="textarea ish metodo" placeholder="Causa possível…"></textarea><textarea class="textarea ish metodo" placeholder="Outra…"></textarea></div>
+            <div class="field"><label class="label">\uD83D\uDCCF Medidas</label><textarea class="textarea ish medidas" placeholder="Causa possível…"></textarea><textarea class="textarea ish medidas" placeholder="Outra…"></textarea></div>
+            <div class="field"><label class="label">\uD83C\uDF33 Meio Ambiente</label><textarea class="textarea ish meioAmbiente" placeholder="Causa possível…"></textarea><textarea class="textarea ish meioAmbiente" placeholder="Outra…"></textarea></div>
+            <div class="field"><label class="label">\uD83D\uDD27 Máquinas</label><textarea class="textarea ish maquinas" placeholder="Causa possível…"></textarea><textarea class="textarea ish maquinas" placeholder="Outra…"></textarea></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__hd">
+          <div class="step"><div class="step__n">4</div><div class="card__title">Ações de Contenção / Imediatas</div></div>
+        </div>
+        <div class="card__bd">
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th>Tipo</th><th>Descrição</th><th>Responsável</th><th>Prazo</th><th class="no-print">–</th></tr></thead>
+              <tbody id="immediateActionTableBody"></tbody>
+            </table>
+          </div>
+          <div class="inline" style="margin-top:12px">
+            <button type="button" class="btn" id="btnAddImmediateAction"><i class="fa-solid fa-plus"></i>Adicionar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <section id="plans" class="section" role="tabpanel">
+    <div class="card" style="margin-bottom:16px">
+      <div class="card__hd">
+        <div class="card__title">Plano de Ação (5W2H)</div>
+        <div class="inline">
+          <button class="btn" id="btnNewPlanMain"><i class="fa-solid fa-plus"></i>Novo Plano</button>
+          <button class="btn btn--primary" id="btnSavePlanMain"><i class="fa-solid fa-save"></i>Salvar Plano</button>
+        </div>
+      </div>
+      <div class="card__bd grid" id="planFormArea">
+        <div class="field">
+          <label class="label" for="planTitle">Título do plano</label>
+          <input id="planTitle" class="input" placeholder="Ex.: Reduzir setup da impressora X">
+        </div>
+        <div class="field">
+          <label class="label">RNCs vinculadas</label>
+          <div id="linkedRNCsDisplay" class="chips" style="min-height:40px"></div>
+          <div class="inline" style="margin-top:8px">
+            <button type="button" class="btn btn--sm" id="btnOpenLinkRncModal"><i class="fa-solid fa-link"></i>Vincular RNCs</button>
+          </div>
+        </div>
+        <div>
+          <h3 style="margin:8px 0 6px">Ações (5W2H)</h3>
+          <div class="table-wrap" style="margin-top:8px">
+            <table class="table">
+              <thead><tr><th>O quê</th><th>Quem</th><th>Prazo</th><th>Status</th><th class="no-print">Ações</th></tr></thead>
+              <tbody id="actionListBody"></tbody>
+            </table>
+          </div>
+          <button type="button" class="btn btn--sm" id="btnAddAction5W2H" style="margin-top:8px"><i class="fa-solid fa-plus"></i>Adicionar Ação 5W2H</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="records" class="section" role="tabpanel">
+    <div class="card" style="margin-bottom:16px">
+      <div class="card__hd" style="justify-content:space-between">
+        <div class="card__title"><i class="fa-solid fa-file-signature"></i> Registros de Não Conformidade</div>
+        <button class="btn btn--sm" id="btnNewRNCFromRecords"><i class="fa-solid fa-plus"></i>Nova RNC</button>
+      </div>
+      <div class="card__bd">
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>ID</th><th>Área</th><th>Cliente</th><th>Data</th><th>Produto</th><th>Status</th><th class="no-print">Ações</th></tr></thead>
+            <tbody id="rncRecordsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card__hd" style="justify-content:space-between">
+        <div class="card__title"><i class="fa-solid fa-list-check"></i> Planos de Ação</div>
+        <button class="btn btn--sm" id="btnNewPlanFromRecords"><i class="fa-solid fa-plus"></i>Novo Plano</button>
+      </div>
+      <div class="card__bd">
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>ID</th><th>Título</th><th>RNCs</th><th>Pendências</th><th class="no-print">Ações</th></tr></thead>
+            <tbody id="planRecordsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="modal" id="linkRncModal" aria-hidden="true">
+  <div class="modal__box">
+    <div class="modal__hd">
+      <div class="card__title">Vincular RNCs ao Plano</div>
+      <button class="btn btn--ghost btn--sm" id="btnCloseLinkRncModal">&times;</button>
+    </div>
+    <div class="modal__bd">
+      <div class="field">
+        <label class="label" for="rncSearchInput">Buscar RNC (ID, Cliente, Problema)</label>
+        <input id="rncSearchInput" class="input" placeholder="Digite para filtrar…">
+      </div>
+      <div id="noRncHint" class="help hidden">Nenhuma RNC cadastrada ainda.</div>
+      <div class="table-wrap" style="margin-top:10px;max-height:45vh;overflow:auto">
+        <table class="table">
+          <thead><tr><th></th><th>ID</th><th>Cliente</th><th>Problema</th></tr></thead>
+          <tbody id="rncLinkListBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal__ft">
+      <button class="btn" id="btnCancelLinkRnc">Cancelar</button>
+      <button class="btn btn--primary" id="btnSaveRncLinks">Salvar vínculos</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="actionModal" aria-hidden="true">
+  <div class="modal__box">
+    <div class="modal__hd">
+      <div class="card__title" id="modalTitle">Adicionar Ação 5W2H</div>
+      <button class="btn btn--ghost btn--sm" id="btnCloseModal">&times;</button>
+    </div>
+    <div class="modal__bd">
+      <div class="grid">
+        <div class="row">
+          <div class="field"><label class="label">What (O quê?)</label><input id="actionWhat" class="input"></div>
+          <div class="field"><label class="label">Why (Por quê?)</label><input id="actionWhy" class="input"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label class="label">Who (Quem?)</label><select id="actionWho" class="select"></select></div>
+          <div class="field"><label class="label">Where (Onde?)</label><input id="actionWhere" class="input"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label class="label">When (Prazo)</label><input id="actionWhen" type="date" class="input"></div>
+          <div class="field"><label class="label">How (Como?)</label><input id="actionHow" class="input"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label class="label">How Much (Custo)</label><input id="actionHowMuch" class="input" placeholder="R$"></div>
+          <div class="field"><label class="label">Status</label><select id="actionStatus" class="select"><option>Aberta</option><option>Em Andamento</option><option>Concluída</option></select></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal__ft">
+      <button class="btn" id="btnCancelAction">Cancelar</button>
+      <button class="btn btn--primary" id="btnSaveAction">Salvar Ação</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(()=>{const $=s=>document.querySelector(s);const $$=s=>Array.from(document.querySelectorAll(s));const STORAGE_KEY='plastimarau_quality_suite_v4';const COLLABORATORS=["João Silva","Maria Oliveira","Carlos Pereira","Ana Costa","Pedro Martins","Juliana Santos","Qualidade","Manutenção","Logística","PCP"];let state={rncs:[],actionPlans:[],currentRNCId:null,currentPlanId:null};const toastBox=$('#toast');function toast(m,i='fa-circle-check'){const el=document.createElement('div');el.className='toast__item';el.innerHTML=`<i class="fa-solid ${i}"></i><div>${m}</div>`;toastBox.appendChild(el);setTimeout(()=>el.remove(),3000)}const debounce=(fn,ms=600)=>{let t;return(...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms)}};function saveState(silent=false){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));$('#saveHint').textContent=`Salvo ${new Date().toLocaleTimeString()}`;if(!silent){}}
+function loadState(){try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const parsed=JSON.parse(raw);state={...state,...parsed}}}catch(e){}}
+const newRNC=()=>({id:`RNC-${Date.now()}`,status:'Aberta',area:'',cliente:'',data:new Date().toISOString().slice(0,10),tipo:'',os:'',item:'',nf:'',lote:'',qtd:'',op:'',dataProd:'',natureza:'',desc:'',fotos:[],ishikawa:{problema:'',maoObra:['',''],materiais:['',''],metodo:['',''],medidas:['',''],meioAmbiente:['',''],maquinas:['','']},actions:[]})
+const newPlan=()=>({id:`PA-${Date.now()}`,title:'Novo Plano de Ação',linkedRNCs:[],actions:[]})
+const newAction=()=>({id:`ACT-${Date.now()}`,what:'',why:'',who:'',where:'',when:'',how:'',howMuch:'',status:'Aberta'})
+function switchTab(id){$$('.tab').forEach(x=>x.classList.remove('is-active'));document.querySelector(`.tab[data-tab="${id}"]`).classList.add('is-active');$$('.section').forEach(s=>s.classList.remove('is-active'));$('#'+id).classList.add('is-active');if(id==='dashboard')renderDashboard();if(id==='records'){renderRncRecords();renderPlanRecords()}}
+$$('.tab').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)))
+function badge(s){if(s==='Aberta')return`<span class="badge badge--open">Aberta</span>`;if(s==='Encerrada')return`<span class="badge badge--done">Encerrada</span>`;return`<span class="badge badge--progress">Em Andamento</span>`}
+function renderDashboard(){const all=(state.actionPlans||[]).flatMap(p=>(p.actions||[]).map(a=>({...a,planTitle:p.title,planId:p.id})));const now=new Date(),soon=new Date(now.getTime()+7*24*60*60*1000);const overdue=all.filter(a=>a.when&&new Date(a.when)<now&&a.status!=='Concluída');const dueSoon=all.filter(a=>a.when&&new Date(a.when)>=now&&new Date(a.when)<=soon&&a.status!=='Concluída');const itm=(a,c='')=>`<div class="kcard ${c}"><strong>${a.what||'(sem título)'}</strong><div class="kmeta">Resp: ${a.who||'-'} • Prazo: ${a.when||'-'}<br>Plano: ${a.planTitle}</div></div>`;$('#dashboard-overdue').innerHTML=overdue.length?overdue.map(a=>itm(a,'over')).join(''):'Nenhuma ação vencida.';$('#dashboard-due-soon').innerHTML=dueSoon.length?dueSoon.map(a=>itm(a,'soon')).join(''):'Nenhuma ação vencendo em breve.';const open=all.filter(a=>a.status==='Aberta'),prog=all.filter(a=>a.status==='Em Andamento'),done=all.filter(a=>a.status==='Concluída');$('#kanban-open').innerHTML=open.length?open.map(a=>itm(a)).join(''):'Sem itens.';$('#kanban-progress').innerHTML=prog.length?prog.map(a=>itm(a)).join(''):'Sem itens.';$('#kanban-done').innerHTML=done.length?done.map(a=>itm(a)).join(''):'Sem itens.'}
+function renderRncRecords(){const tb=$('#rncRecordsTableBody');tb.innerHTML='';(state.rncs||[]).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${r.id.slice(-6)}</td><td>${r.area||'-'}</td><td>${r.cliente||'-'}</td><td>${r.data?new Date(r.data+'T00:00:00').toLocaleDateString():'-'}</td><td>${r.item||'-'}</td><td>${badge(r.status)}</td><td class="row-actions no-print"><button class="btn btn--sm" data-action="view-rnc" data-id="${r.id}"><i class="fa-regular fa-eye"></i></button><button class="btn btn--sm" data-action="edit-rnc" data-id="${r.id}"><i class="fa-solid fa-pen"></i></button><button class="btn btn--sm" data-action="delete-rnc" data-id="${r.id}"><i class="fa-solid fa-trash"></i></button></td>`;tb.appendChild(tr)})}
+function renderPlanRecords(){const tb=$('#planRecordsTableBody');tb.innerHTML='';(state.actionPlans||[]).forEach(p=>{const pend=(p.actions||[]).filter(a=>a.status!=='Concluída').length;const tr=document.createElement('tr');tr.innerHTML=`<td>${p.id.slice(-6)}</td><td>${p.title}</td><td>${(p.linkedRNCs||[]).length}</td><td>${pend} de ${(p.actions||[]).length}</td><td class="row-actions no-print"><button class="btn btn--sm" data-action="view-plan" data-id="${p.id}"><i class="fa-regular fa-eye"></i></button><button class="btn btn--sm" data-action="edit-plan" data-id="${p.id}"><i class="fa-solid fa-pen"></i></button><button class="btn btn--sm" data-action="delete-plan" data-id="${p.id}"><i class="fa-solid fa-trash"></i></button></td>`;tb.appendChild(tr)})}
+function setRNCForm(r){$('#rncArea').value=r.area||'';$('#rncCliente').value=r.cliente||'';$('#rncData').value=r.data||'';$('#rncTipo').value=r.tipo||'';$('#rncOS').value=r.os||'';$('#rncItem').value=r.item||'';$('#rncNF').value=r.nf||'';$('#rncLote').value=r.lote||'';$('#rncQtd').value=r.qtd||'';$('#rncOP').value=r.op||'';$('#rncDataProd').value=r.dataProd||'';$$('input[name="rncNatureza"]').forEach(x=>x.checked=x.value===r.natureza);$('#rncDesc').value=r.desc||'';$('#ishikawaProblema').value=r.ishikawa?.problema||'';const map=[['maoObra','.ish.maoObra'],['materiais','.ish.materiais'],['metodo','.ish.metodo'],['medidas','.ish.medidas'],['meioAmbiente','.ish.meioAmbiente'],['maquinas','.ish.maquinas']];map.forEach(([k,sel])=>{$$(sel).forEach((ta,i)=>ta.value=(r.ishikawa?.[k]||[])[i]||'')});renderFiles(r.fotos||[]);renderImmediate(r.actions||[])}
+function renderFiles(names){const el=$('#fileList');if(!names||!names.length){el.textContent='Nenhum arquivo selecionado.';return}el.innerHTML=names.map(n=>`<div><i class="fa-solid fa-paperclip"></i> ${n}</div>`).join('')}
+function renderImmediate(arr){const tb=$('#immediateActionTableBody');tb.innerHTML='';(arr||[]).forEach(a=>{const tr=document.createElement('tr');tr.innerHTML=`<td><select class="select" data-field="type"><option value="Imediata" ${a.type==='Imediata'?'selected':''}>Imediata</option><option value="Corretiva" ${a.type==='Corretiva'?'selected':''}>Corretiva</option></select></td><td><textarea class="textarea" data-field="description" placeholder="Descreva a ação…">${a.description||''}</textarea></td><td><input class="input" data-field="responsible" value="${a.responsible||''}" placeholder="Responsável"></td><td><input type="date" class="input" data-field="deadline" value="${a.deadline||''}"></td><td class="no-print"><button type="button" class="btn btn--sm btn-remove-immediate"><i class="fa-solid fa-trash"></i></button></td>`;tb.appendChild(tr)})}
+function renderPlanForm(p){$('#planTitle').value=p?p.title||'':'';const box=$('#linkedRNCsDisplay');box.innerHTML='';(p?.linkedRNCs||[]).forEach(id=>{const r=state.rncs.find(x=>x.id===id);if(r){const chip=document.createElement('span');chip.className='chip';chip.innerHTML=`RNC-${r.id.slice(-6)} <button class="btn btn--sm" data-remove-rnc="${r.id}" title="Remover" style="padding:2px 6px;margin-left:6px"><i class="fa-solid fa-xmark"></i></button>`;box.appendChild(chip)}});renderActionList(p)}
+function renderActionList(p){const tb=$('#actionListBody');tb.innerHTML='';(p?.actions||[]).forEach(a=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${a.what||'-'}</td><td>${a.who||'-'}</td><td>${a.when||'-'}</td><td>${a.status||'-'}</td><td class="row-actions no-print"><button class="btn btn--sm" data-action="edit-action" data-id="${a.id}"><i class="fa-solid fa-pen"></i></button><button class="btn btn--sm" data-action="delete-action" data-id="${a.id}"><i class="fa-solid fa-trash"></i></button></td>`;tb.appendChild(tr)})}
+function collectRNC(){const r=state.rncs.find(x=>x.id===state.currentRNCId)||newRNC();r.id=state.currentRNCId||r.id;r.area=$('#rncArea').value;r.cliente=$('#rncCliente').value.trim();r.data=$('#rncData').value;r.tipo=$('#rncTipo').value;r.os=$('#rncOS').value.trim();r.item=$('#rncItem').value.trim();r.nf=$('#rncNF').value.trim();r.lote=$('#rncLote').value.trim();r.qtd=$('#rncQtd').value;r.op=$('#rncOP').value.trim();r.dataProd=$('#rncDataProd').value;const n=document.querySelector('input[name="rncNatureza"]:checked');r.natureza=n?n.value:'';r.desc=$('#rncDesc').value.trim();r.ishikawa.problema=$('#ishikawaProblema').value.trim();r.ishikawa.maoObra=$$('.ish.maoObra').map(t=>t.value.trim());r.ishikawa.materiais=$$('.ish.materiais').map(t=>t.value.trim());r.ishikawa.metodo=$$('.ish.metodo').map(t=>t.value.trim());r.ishikawa.medidas=$$('.ish.medidas').map(t=>t.value.trim());r.ishikawa.meioAmbiente=$$('.ish.meioAmbiente').map(t=>t.value.trim());r.ishikawa.maquinas=$$('.ish.maquinas').map(t=>t.value.trim());r.actions=[];$('#immediateActionTableBody').querySelectorAll('tr').forEach(tr=>{r.actions.push({type:tr.querySelector('[data-field="type"]').value,description:tr.querySelector('[data-field="description"]').value,responsible:tr.querySelector('[data-field="responsible"]').value,deadline:tr.querySelector('[data-field="deadline"]').value})});return r}
+function clearErrors(){$$('[data-err]').forEach(e=>e.textContent='')}
+function requireField(id,label){const v=$(id).value;if(!v){$(`[data-err="${id.slice(1)}"]`).textContent=`${label} é obrigatório.`;return false}return true}
+function validateRNC(){clearErrors();let ok=true;ok&=requireField('#rncArea','Área');ok&=requireField('#rncCliente','Cliente');ok&=requireField('#rncData','Data');ok&=requireField('#rncTipo','Tipo');ok&=requireField('#rncDesc','Descrição');ok&=requireField('#ishikawaProblema','Problema principal');return!!ok}
+$('#btnPrint').addEventListener('click',()=>window.print())
+$('#btnNewRNC,#btnNewRNCFromRecords').forEach?null:0
+$('#btnNewRNC').addEventListener('click',()=>{const r=newRNC();state.currentRNCId=r.id;setRNCForm(r);upsertRNC(r);saveState(true);toast('Nova RNC iniciada.','fa-file-circle-plus');switchTab('rnc')})
+$('#btnNewRNCFromRecords').addEventListener('click',()=>$('#btnNewRNC').click())
+$('#btnSaveRNC').addEventListener('click',()=>{if(!validateRNC()){toast('Preencha os campos obrigatórios.','fa-triangle-exclamation');return}const data=collectRNC();upsertRNC(data);renderRncRecords();toast(`RNC ${data.id.slice(-6)} salva.`)})
+function upsertRNC(r){const i=state.rncs.findIndex=>x.id===r.id);if(i>-1)state.rncs[i]=r;else state.rncs.unshift(r);state.currentRNCId=r.id;saveState(true)}
+const autosaveRNC=debounce(()=>{const r=collectRNC();upsertRNC(r)},800);$('#rnc').addEventListener('input',autosaveRNC)
+$('#rncFotos').addEventListener('change',e=>{const cur=state.rncs.find(x=>x.id===state.currentRNCId);if(!cur)return;cur.fotos=Array.from(e.target.files).map(f=>f.name);renderFiles(cur.fotos);saveState(true)})
+$('#btnAddImmediateAction').addEventListener('click',()=>{const tb=$('#immediateActionTableBody');const tr=document.createElement('tr');tr.innerHTML=`<td><select class="select" data-field="type"><option value="Imediata" selected>Imediata</option><option value="Corretiva">Corretiva</option></select></td><td><textarea class="textarea" data-field="description" placeholder="Descreva a ação…"></textarea></td><td><input class="input" data-field="responsible" placeholder="Responsável"></td><td><input type="date" class="input" data-field="deadline"></td><td class="no-print"><button type="button" class="btn btn--sm btn-remove-immediate"><i class="fa-solid fa-trash"></i></button></td>`;tb.appendChild(tr)})
+$('#immediateActionTableBody').addEventListener('click',e=>{const b=e.target.closest('.btn-remove-immediate');if(b){b.closest('tr').remove();autosaveRNC()}})
+$('#rncRecordsTableBody').addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;const{action,id}=btn.dataset;if(action==='view-rnc'||action==='edit-rnc'){state.currentRNCId=id;const r=state.rncs.find(x=>x.id===id);if(r)setRNCForm(JSON.parse(JSON.stringify(r)));switchTab('rnc')}else if(action==='delete-rnc'){if(confirm(`Excluir RNC ${id.slice(-6)}?`)){state.rncs=state.rncs.filter(x=>x.id!==id);state.actionPlans.forEach(p=>p.linkedRNCs=(p.linkedRNCs||[]).filter(rid=>rid!==id));saveState();renderRncRecords();toast('RNC excluída.','fa-trash')}}})
+function ensurePlanExists(){let p=state.actionPlans.find(x=>x.id===state.currentPlanId);if(!p){p=newPlan();state.actionPlans.push(p);state.currentPlanId=p.id;saveState(true)}return p}
+$('#btnNewPlanMain,#btnNewPlanFromRecords').forEach?null:0
+$('#btnNewPlanMain').addEventListener('click',()=>{const p=newPlan();state.actionPlans.push(p);state.currentPlanId=p.id;saveState();renderPlanForm(p);renderPlanRecords();toast('Plano criado.','fa-plus');switchTab('plans')})
+$('#btnNewPlanFromRecords').addEventListener('click',()=>$('#btnNewPlanMain').click())
+$('#btnSavePlanMain').addEventListener('click',()=>{const p=ensurePlanExists();p.title=$('#planTitle').value.trim()||'Plano sem título';saveState();renderPlanRecords();renderPlanForm(p);toast('Plano salvo.')})
+$('#btnOpenLinkRncModal').addEventListener('click',()=>{const p=ensurePlanExists();populateRncLinkModal(p.linkedRNCs);$('#linkRncModal').style.display='flex'})
+$('#btnCloseLinkRncModal,#btnCancelLinkRnc').addEventListener('click',()=>$('#linkRncModal').style.display='none')
+function populateRncLinkModal(linked=[]){const tb=$('#rncLinkListBody');const hint=$('#noRncHint');tb.innerHTML='';const list=(state.rncs||[]);hint.classList.toggle('hidden',list.length>0);const q=($('#rncSearchInput').value||'').toLowerCase();list.filter(r=>`${r.id} ${r.cliente} ${r.ishikawa?.problema||''}`.toLowerCase().includes(q)).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td><input type="checkbox" value="${r.id}" ${linked.includes(r.id)?'checked':''}></td><td>RNC-${r.id.slice(-6)}</td><td>${r.cliente||'-'}</td><td>${r.ishikawa?.problema||'-'}</td>`;tb.appendChild(tr)})}
+$('#rncSearchInput').addEventListener('input',()=>{const p=state.actionPlans.find(x=>x.id===state.currentPlanId);populateRncLinkModal(p?p.linkedRNCs:[])})
+$('#btnSaveRncLinks').addEventListener('click',()=>{const p=ensurePlanExists();p.linkedRNCs=$$('#rncLinkListBody input[type="checkbox"]:checked').map(i=>i.value);saveState();renderPlanForm(p);$('#linkRncModal').style.display='none';toast('RNCs vinculadas.')})
+$('#linkedRNCsDisplay').addEventListener('click',e=>{const btn=e.target.closest('[data-remove-rnc]');if(!btn)return;const p=ensurePlanExists();p.linkedRNCs=(p.linkedRNCs||[]).filter(id=>id!==btn.dataset.removeRnc);saveState();renderPlanForm(p)})
+$('#btnAddAction5W2H').addEventListener('click',()=>openActionModal(newAction()))
+$('#actionListBody').addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;const{action,id}=btn.dataset;const p=state.actionPlans.find(x=>x.id===state.currentPlanId);if(!p)return;if(action==='edit-action'){const a=p.actions.find(x=>x.id===id);if(a)openActionModal(a)}else if(action==='delete-action'){if(confirm('Excluir ação?')){p.actions=p.actions.filter(x=>x.id!==id);saveState();renderActionList(p);toast('Ação excluída.','fa-trash')}}})
+function openActionModal(a){$('#modalTitle').textContent=a.what?'Editar Ação 5W2H':'Adicionar Ação 5W2H';$('#actionWhat').value=a.what||'';$('#actionWhy').value=a.why||'';$('#actionWho').innerHTML=COLLABORATORS.map(c=>`<option ${c===a.who?'selected':''}>${c}</option>`).join('');$('#actionWhere').value=a.where||'';$('#actionWhen').value=a.when||'';$('#actionHow').value=a.how||'';$('#actionHowMuch').value=a.howMuch||'';$('#actionStatus').value=a.status||'Aberta';$('#actionModal').dataset.editingId=a.id||'';$('#actionModal').style.display='flex'}
+function closeActionModal(){$('#actionModal').style.display='none';$('#actionModal').dataset.editingId=''}
+$('#btnCloseModal,#btnCancelAction').addEventListener('click',closeActionModal)
+$('#btnSaveAction').addEventListener('click',()=>{const p=ensurePlanExists();const editing=$('#actionModal').dataset.editingId;let a=editing?p.actions.find(x=>x.id===editing):null;if(!a){a=newAction();p.actions.push(a)}a.what=$('#actionWhat').value.trim();a.why=$('#actionWhy').value.trim();a.who=$('#actionWho').value;a.where=$('#actionWhere').value.trim();a.when=$('#actionWhen').value;a.how=$('#actionHow').value.trim();a.howMuch=$('#actionHowMuch').value.trim();a.status=$('#actionStatus').value;saveState();renderActionList(p);closeActionModal();toast('Ação salva.')})
+$('#planRecordsTableBody').addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;const{action,id}=btn.dataset;if(action==='view-plan'||action==='edit-plan'){state.currentPlanId=id;const p=state.actionPlans.find(x=>x.id===id);renderPlanForm(JSON.parse(JSON.stringify(p)));switchTab('plans')}else if(action==='delete-plan'){if(confirm(`Excluir plano ${id.slice(-6)}?`)){state.actionPlans=state.actionPlans.filter(x=>x.id!==id);if(state.currentPlanId===id)state.currentPlanId=null;saveState();renderPlanRecords();renderPlanForm(state.actionPlans.find(x=>x.id===state.currentPlanId)||null);toast('Plano excluído.','fa-trash')}}})
+$('#planTitle').addEventListener('input',debounce(()=>{const p=ensurePlanExists();p.title=$('#planTitle').value;saveState(true);renderPlanRecords()},500))
+function fullRender(){renderDashboard();renderRncRecords();renderPlanRecords();const curR=state.rncs.find(x=>x.id===state.currentRNCId)||newRNC();state.currentRNCId=curR.id;setRNCForm(curR);const curP=state.actionPlans.find(x=>x.id===state.currentPlanId);renderPlanForm(curP||null)}
+loadState();fullRender()})()
+</script>
+</body>
+</html>
