@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -8,7 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-/* Variáveis CSS */
 :root{
     --primary:#4f46e5;
     --primary2:#4338ca;
@@ -24,8 +24,6 @@
     --pad:20px;
     --max:1200px;
 }
-
-/* Reset e base */
 *{box-sizing:border-box;}
 html,body{height:100%;}
 body{
@@ -37,8 +35,6 @@ body{
 }
 a{color:var(--primary);}
 .hidden{display:none!important;}
-
-/* Header */
 .header{
     position:sticky;
     top:0;
@@ -68,8 +64,6 @@ a{color:var(--primary);}
 }
 .brand__title{font-weight:700;}
 .header__right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
-
-/* Badges */
 .badge-dot{
     display:flex;
     align-items:center;
@@ -89,13 +83,11 @@ a{color:var(--primary);}
     padding:4px 8px;
     border-radius:999px;
     border:1px solid;
-    font-size: 0.85rem; /* Ajuste para melhor visualização */
+    font-size: 0.85rem;
 }
 .badge--open{background:#fff7ed;color:#9a3412;border-color:#fed7aa;}
 .badge--done{background:#ecfeff;color:#065f46;border-color:#99f6e4;}
 .badge--progress{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe;}
-
-/* Botões */
 .btn{
     display:inline-flex;
     gap:8px;
@@ -107,19 +99,15 @@ a{color:var(--primary);}
     font-weight:600;
     cursor:pointer;
     transition:.2s;
-    text-decoration: none; /* Para garantir que não tenha sublinhado se for um link */
-    color: inherit; /* Para herdar a cor do texto */
+    text-decoration: none;
+    color: inherit;
 }
 .btn:hover{box-shadow:var(--shadow);}
 .btn--primary{background:var(--primary);border-color:var(--primary);color:#fff;}
 .btn--ghost{background:transparent;border-color:transparent;color:#374151;}
 .btn--sm{padding:8px 10px;font-size:.925rem;}
 .btn[disabled]{opacity:.6;cursor:not-allowed;}
-
-/* Main content */
 .main{max-width:var(--max);margin:0 auto;padding:20px var(--pad) 60px;}
-
-/* Tabs */
 .tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--border);margin-bottom:16px;}
 .tab{
     appearance:none;
@@ -134,20 +122,14 @@ a{color:var(--primary);}
 .tab.is-active{color:var(--primary);border-bottom-color:var(--primary);}
 .section{display:none;}
 .section.is-active{display:block;}
-
-/* Cards */
 .card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;}
 .card__hd{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;justify-content:space-between;}
 .card__title{font-weight:700;}
 .card__bd{padding:18px;}
-
-/* Grid */
 .grid{display:grid;gap:16px;}
 .grid--2{grid-template-columns:repeat(2,minmax(0,1fr));}
 .grid--3{grid-template-columns:repeat(3,minmax(0,1fr));}
 @media (max-width:900px){.grid--3,.grid--2{grid-template-columns:1fr;}}
-
-/* Formulários */
 .field{display:flex;flex-direction:column;gap:8px;}
 .label{font-weight:700;font-size:.95rem;}
 .help{color:var(--muted);font-size:.86rem;}
@@ -170,8 +152,6 @@ a{color:var(--primary);}
 .chip{padding:8px 10px;border:1px solid var(--border);border-radius:999px;background:#f9fafb;font-weight:600;font-size:.9rem;}
 .required::after{content:" *";color:var(--danger);font-weight:700;}
 .error{font-size:.85rem;color:#b91c1c;}
-
-/* Steps */
 .step{display:flex;align-items:center;gap:10px;}
 .step__n{
     width:28px;
@@ -184,15 +164,11 @@ a{color:var(--primary);}
     font-weight:700;
     font-size:.9rem;
 }
-
-/* Tabelas */
 .table-wrap{border:1px solid var(--border);border-radius:12px;overflow:auto;background:#fff;}
 .table{border-collapse:collapse;width:100%;}
 .table th,.table td{padding:12px 14px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;}
 .table th{background:#f8fafc;font-weight:700;}
 .row-actions{display:flex;gap:6px;flex-wrap:nowrap;}
-
-/* Kanban */
 .kanban{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
 @media (max-width:900px){.kanban{grid-template-columns:1fr;}}
 .kcol h3{margin:8px 0 12px;}
@@ -200,13 +176,11 @@ a{color:var(--primary);}
 .kcard.over{border-left-color:var(--danger);}
 .kcard.soon{border-left-color:var(--warn);}
 .kmeta{color:var(--muted);font-size:.9rem;}
-
-/* Modal */
 .modal{
     position:fixed;
     inset:0;
     background:rgba(17,24,39,.55);
-    display:none; /* Hidden by default */
+    display:none;
     align-items:center;
     justify-content:center;
     z-index:60;
@@ -225,8 +199,6 @@ a{color:var(--primary);}
 .modal__hd{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
 .modal__bd{padding:18px;overflow:auto;}
 .modal__ft{padding:14px 18px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end;background:#f8fafc;}
-
-/* Toast */
 .toast{
     position:fixed;
     bottom:16px;
@@ -248,13 +220,11 @@ a{color:var(--primary);}
     align-items:flex-start;
 }
 .toast__item i{margin-top:2px;}
-
-/* Impressão */
 @media print{
     .header,.tabs,.btn,.modal,.toast{display:none!important;}
     body{background:#fff;}
     .card{box-shadow:none;border:1px solid #000;}
-    .no-print{display:none!important;} /* Adicionado para ocultar colunas de ação na impressão */
+    .no-print{display:none!important;}
 }
 </style>
 </head>
@@ -445,14 +415,12 @@ a{color:var(--primary);}
           </div>
         </div>
         <div>
-          <h3 style="margin:8px 0 6px">Ações (5W2H)</h3>
-          <div class="table-wrap" style="margin-top:8px">
-            <table class="table">
-              <thead><tr><th>O quê</th><th>Quem</th><th>Prazo</th><th>Status</th><th class="no-print">Ações</th></tr></thead>
-              <tbody id="actionListBody"></tbody>
-            </table>
+          <div class="inline" style="justify-content:space-between; align-items:center;">
+            <h3 style="margin:8px 0 6px">Ações (5W2H)</h3>
+            <button type="button" class="btn btn--sm no-print" id="btnAddAction5W2H" style="margin-top:8px"><i class="fa-solid fa-plus"></i>Adicionar Ação</button>
           </div>
-          <button type="button" class="btn btn--sm" id="btnAddAction5W2H" style="margin-top:8px"><i class="fa-solid fa-plus"></i>Adicionar Ação 5W2H</button>
+          <div id="planDetailsArea" class="grid" style="margin-top:12px;">
+          </div>
         </div>
       </div>
     </div>
@@ -553,17 +521,13 @@ a{color:var(--primary);}
 
 <script>
 (function() {
-    // Atalhos para seletores DOM
     const $ = s => document.querySelector(s);
     const $$ = s => Array.from(document.querySelectorAll(s));
 
-    // Chave para armazenamento local
     const STORAGE_KEY = 'plastimarau_quality_suite_v4';
 
-    // Lista de colaboradores para seleção
     const COLLABORATORS = ["Maciel", "Rudnei", "Graziela", "Josimar", "Ricardo", "Charlei", "Ederson", "Niumar", "Logística", "PCP"];
 
-    // Estado global da aplicação
     let state = {
         rncs: [],
         actionPlans: [],
@@ -571,14 +535,8 @@ a{color:var(--primary);}
         currentPlanId: null
     };
 
-    // Elemento para exibir toasts
     const toastBox = $('#toast');
 
-    /**
-     * Exibe uma mensagem de toast.
-     * @param {string} message - A mensagem a ser exibida.
-     * @param {string} iconClass - Classe do ícone Font Awesome (ex: 'fa-circle-check').
-     */
     function toast(message, iconClass = 'fa-circle-check') {
         const el = document.createElement('div');
         el.className = 'toast__item';
@@ -587,11 +545,6 @@ a{color:var(--primary);}
         setTimeout(() => el.remove(), 3000);
     }
 
-    /**
-     * Função debounce para atrasar a execução de uma função.
-     * @param {Function} fn - A função a ser executada.
-     * @param {number} ms - O tempo de atraso em milissegundos.
-     */
     const debounce = (fn, ms = 600) => {
         let timeoutId;
         return (...args) => {
@@ -600,10 +553,6 @@ a{color:var(--primary);}
         };
     };
 
-    /**
-     * Salva o estado atual no localStorage.
-     * @param {boolean} silent - Se true, não atualiza o hint de salvamento.
-     */
     function saveState(silent = false) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
         if (!silent) {
@@ -611,9 +560,6 @@ a{color:var(--primary);}
         }
     }
 
-    /**
-     * Carrega o estado do localStorage.
-     */
     function loadState() {
         try {
             const raw = localStorage.getItem(STORAGE_KEY);
@@ -626,7 +572,6 @@ a{color:var(--primary);}
         }
     }
 
-    // Funções de fábrica para novos objetos
     const newRNC = () => ({
         id: `RNC-${Date.now()}`,
         status: 'Aberta',
@@ -653,14 +598,14 @@ a{color:var(--primary);}
             meioAmbiente: ['', ''],
             maquinas: ['', '']
         },
-        actions: [] // Ações imediatas/contenção
+        actions: []
     });
 
     const newPlan = () => ({
         id: `PA-${Date.now()}`,
         title: 'Novo Plano de Ação',
         linkedRNCs: [],
-        actions: [] // Ações 5W2H
+        actions: []
     });
 
     const newAction = () => ({
@@ -675,10 +620,6 @@ a{color:var(--primary);}
         status: 'Aberta'
     });
 
-    /**
-     * Alterna a aba ativa na interface.
-     * @param {string} id - O ID da aba a ser ativada.
-     */
     function switchTab(id) {
         $$('.tab').forEach(x => x.classList.remove('is-active'));
         $(`.tab[data-tab="${id}"]`).classList.add('is-active');
@@ -692,30 +633,21 @@ a{color:var(--primary);}
         }
     }
 
-    // Adiciona listeners para as abas
     $$('.tab').forEach(b => b.addEventListener('click', () => switchTab(b.dataset.tab)));
 
-    /**
-     * Retorna o HTML para um badge de status.
-     * @param {string} status - O status (Aberta, Encerrada, Em Andamento).
-     * @returns {string} HTML do badge.
-     */
     function badge(status) {
         if (status === 'Aberta') return `<span class="badge badge--open">Aberta</span>`;
         if (status === 'Concluída') return `<span class="badge badge--done">Concluída</span>`;
         return `<span class="badge badge--progress">Em Andamento</span>`;
     }
 
-    /**
-     * Renderiza o dashboard com ações vencidas, vencendo em breve e kanban.
-     */
     function renderDashboard() {
         const allActions = (state.actionPlans || []).flatMap(p =>
             (p.actions || []).map(a => ({ ...a, planTitle: p.title, planId: p.id }))
         );
 
         const now = new Date();
-        now.setHours(0, 0, 0, 0); // Normaliza para o início do dia
+        now.setHours(0, 0, 0, 0);
         const sevenDaysFromNow = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
 
         const overdue = allActions.filter(a => a.when && new Date(a.when + 'T00:00:00') < now && a.status !== 'Concluída');
@@ -743,9 +675,6 @@ a{color:var(--primary);}
         $('#kanban-done').innerHTML = done.length ? done.map(a => itemCard(a)).join('') : 'Sem itens.';
     }
 
-    /**
-     * Renderiza a tabela de registros de RNCs.
-     */
     function renderRncRecords() {
         const tbody = $('#rncRecordsTableBody');
         tbody.innerHTML = '';
@@ -768,9 +697,6 @@ a{color:var(--primary);}
         });
     }
 
-    /**
-     * Renderiza a tabela de registros de Planos de Ação.
-     */
     function renderPlanRecords() {
         const tbody = $('#planRecordsTableBody');
         tbody.innerHTML = '';
@@ -793,10 +719,6 @@ a{color:var(--primary);}
         });
     }
 
-    /**
-     * Preenche o formulário de RNC com os dados de uma RNC.
-     * @param {object} r - O objeto RNC.
-     */
     function setRNCForm(r) {
         $('#rncArea').value = r.area || '';
         $('#rncCliente').value = r.cliente || '';
@@ -829,10 +751,6 @@ a{color:var(--primary);}
         renderImmediateActions(r.actions || []);
     }
 
-    /**
-     * Renderiza a lista de arquivos anexados.
-     * @param {string[]} names - Nomes dos arquivos.
-     */
     function renderFiles(names) {
         const el = $('#fileList');
         if (!names || !names.length) {
@@ -842,10 +760,6 @@ a{color:var(--primary);}
         el.innerHTML = names.map(n => `<div><i class="fa-solid fa-paperclip"></i> ${n}</div>`).join('');
     }
 
-    /**
-     * Renderiza a tabela de ações imediatas/contenção.
-     * @param {object[]} actions - Array de ações.
-     */
     function renderImmediateActions(actions) {
         const tbody = $('#immediateActionTableBody');
         tbody.innerHTML = '';
@@ -867,10 +781,6 @@ a{color:var(--primary);}
         });
     }
 
-    /**
-     * Preenche o formulário de Plano de Ação com os dados de um plano.
-     * @param {object} p - O objeto Plano de Ação.
-     */
     function renderPlanForm(p) {
         $('#planTitle').value = p ? p.title || '' : '';
         const linkedRNCsDisplay = $('#linkedRNCsDisplay');
@@ -887,36 +797,43 @@ a{color:var(--primary);}
         renderActionList(p);
     }
 
-    /**
-     * Renderiza a lista de ações 5W2H para um plano.
-     * @param {object} p - O objeto Plano de Ação.
-     */
     function renderActionList(p) {
-        const tbody = $('#actionListBody');
-        tbody.innerHTML = '';
-        (p?.actions || []).forEach(a => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${a.what || '-'}</td>
-                <td>${a.who || '-'}</td>
-                <td>${a.when ? new Date(a.when + 'T00:00:00').toLocaleDateString() : '-'}</td>
-                <td>${badge(a.status)}</td>
-                <td class="row-actions no-print">
-                    <button class="btn btn--sm" data-action="edit-action" data-id="${a.id}" title="Editar Ação"><i class="fa-solid fa-pen"></i></button>
-                    <button class="btn btn--sm" data-action="delete-action" data-id="${a.id}" title="Excluir Ação"><i class="fa-solid fa-trash"></i></button>
-                </td>
+        const container = $('#planDetailsArea');
+        container.innerHTML = '';
+
+        if (!p || !p.actions || p.actions.length === 0) {
+            container.innerHTML = '<div class="help">Nenhuma ação cadastrada para este plano.</div>';
+            return;
+        }
+
+        (p.actions).forEach((a, index) => {
+            const actionCard = document.createElement('div');
+            actionCard.className = 'card';
+            actionCard.innerHTML = `
+                <div class="card__hd">
+                    <div class="card__title">Ação ${index + 1}: ${a.what || '(Ação sem título)'}</div>
+                    <div class="inline">
+                        ${badge(a.status)}
+                        <button class="btn btn--sm no-print" data-action="edit-action" data-id="${a.id}" title="Editar Ação"><i class="fa-solid fa-pen"></i></button>
+                        <button class="btn btn--sm no-print" data-action="delete-action" data-id="${a.id}" title="Excluir Ação"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+                <div class="card__bd grid grid--2">
+                    <div class="field"><label class="label">Why (Por quê?)</label><div>${a.why || '-'}</div></div>
+                    <div class="field"><label class="label">Who (Quem?)</label><div>${a.who || '-'}</div></div>
+                    <div class="field"><label class="label">Where (Onde?)</label><div>${a.where || '-'}</div></div>
+                    <div class="field"><label class="label">When (Prazo)</label><div>${a.when ? new Date(a.when + 'T00:00:00').toLocaleDateString() : '-'}</div></div>
+                    <div class="field"><label class="label">How (Como?)</label><div>${a.how || '-'}</div></div>
+                    <div class="field"><label class="label">How Much (Custo)</label><div>${a.howMuch || '-'}</div></div>
+                </div>
             `;
-            tbody.appendChild(tr);
+            container.appendChild(actionCard);
         });
     }
 
-    /**
-     * Coleta os dados do formulário de RNC.
-     * @returns {object} O objeto RNC preenchido.
-     */
     function collectRNC() {
         const r = state.rncs.find(x => x.id === state.currentRNCId) || newRNC();
-        r.id = state.currentRNCId || r.id; // Garante que o ID seja mantido ou gerado
+        r.id = state.currentRNCId || r.id;
         r.area = $('#rncArea').value;
         r.cliente = $('#rncCliente').value.trim();
         r.data = $('#rncData').value;
@@ -940,7 +857,7 @@ a{color:var(--primary);}
         r.ishikawa.meioAmbiente = $$('.ish.meioAmbiente').map(t => t.value.trim());
         r.ishikawa.maquinas = $$('.ish.maquinas').map(t => t.value.trim());
 
-        r.actions = []; // Limpa e recria as ações imediatas
+        r.actions = [];
         $('#immediateActionTableBody').querySelectorAll('tr').forEach(tr => {
             r.actions.push({
                 type: tr.querySelector('[data-field="type"]').value,
@@ -952,19 +869,10 @@ a{color:var(--primary);}
         return r;
     }
 
-    /**
-     * Limpa todas as mensagens de erro do formulário.
-     */
     function clearErrors() {
         $$('[data-err]').forEach(e => e.textContent = '');
     }
 
-    /**
-     * Valida se um campo obrigatório está preenchido.
-     * @param {string} id - O ID do campo.
-     * @param {string} label - O rótulo do campo para a mensagem de erro.
-     * @returns {boolean} True se o campo estiver preenchido, false caso contrário.
-     */
     function requireField(id, label) {
         const value = $(id).value;
         if (!value) {
@@ -974,10 +882,6 @@ a{color:var(--primary);}
         return true;
     }
 
-    /**
-     * Valida o formulário de RNC.
-     * @returns {boolean} True se o formulário for válido, false caso contrário.
-     */
     function validateRNC() {
         clearErrors();
         let isValid = true;
@@ -987,26 +891,22 @@ a{color:var(--primary);}
         isValid &= requireField('#rncTipo', 'Tipo');
         isValid &= requireField('#rncDesc', 'Descrição');
         isValid &= requireField('#ishikawaProblema', 'Problema principal');
-        return !!isValid; // Converte para booleano
+        return !!isValid;
     }
 
-    // Event Listeners Globais
     $('#btnPrint').addEventListener('click', () => window.print());
 
-    // Botões de Nova RNC
     $('#btnNewRNC').addEventListener('click', () => {
         const r = newRNC();
         state.currentRNCId = r.id;
         setRNCForm(r);
-        upsertRNC(r); // Adiciona a nova RNC ao estado
+        upsertRNC(r);
         saveState(true);
         toast('Nova RNC iniciada.', 'fa-file-circle-plus');
         switchTab('rnc');
     });
-    // O botão de "Nova RNC" na aba de registros apenas aciona o botão principal
     $('#btnNewRNCFromRecords').addEventListener('click', () => $('#btnNewRNC').click());
 
-    // Salvar RNC
     $('#btnSaveRNC').addEventListener('click', () => {
         if (!validateRNC()) {
             toast('Preencha os campos obrigatórios.', 'fa-triangle-exclamation');
@@ -1018,29 +918,23 @@ a{color:var(--primary);}
         toast(`RNC ${data.id.slice(-6)} salva.`);
     });
 
-    /**
-     * Adiciona ou atualiza uma RNC no estado.
-     * @param {object} r - O objeto RNC a ser salvo.
-     */
     function upsertRNC(r) {
         const index = state.rncs.findIndex(x => x.id === r.id);
         if (index > -1) {
             state.rncs[index] = r;
         } else {
-            state.rncs.unshift(r); // Adiciona no início para aparecer primeiro
+            state.rncs.unshift(r);
         }
         state.currentRNCId = r.id;
         saveState(true);
     }
 
-    // Autosave para o formulário de RNC
     const autosaveRNC = debounce(() => {
         const r = collectRNC();
         upsertRNC(r);
     }, 800);
     $('#rnc').addEventListener('input', autosaveRNC);
 
-    // Lidar com upload de fotos
     $('#rncFotos').addEventListener('change', e => {
         const currentRNC = state.rncs.find(x => x.id === state.currentRNCId);
         if (!currentRNC) return;
@@ -1049,7 +943,6 @@ a{color:var(--primary);}
         saveState(true);
     });
 
-    // Adicionar ação imediata
     $('#btnAddImmediateAction').addEventListener('click', () => {
         const tbody = $('#immediateActionTableBody');
         const tr = document.createElement('tr');
@@ -1068,16 +961,14 @@ a{color:var(--primary);}
         tbody.appendChild(tr);
     });
 
-    // Remover ação imediata (delegação de evento)
     $('#immediateActionTableBody').addEventListener('click', e => {
         const button = e.target.closest('.btn-remove-immediate');
         if (button) {
             button.closest('tr').remove();
-            autosaveRNC(); // Salva após remover
+            autosaveRNC();
         }
     });
 
-    // Ações na tabela de registros de RNC
     $('#rncRecordsTableBody').addEventListener('click', e => {
         const btn = e.target.closest('button');
         if (!btn) return;
@@ -1087,14 +978,12 @@ a{color:var(--primary);}
             state.currentRNCId = id;
             const rnc = state.rncs.find(x => x.id === id);
             if (rnc) {
-                // Cria uma cópia profunda para evitar modificações diretas no estado antes de salvar
                 setRNCForm(JSON.parse(JSON.stringify(rnc)));
             }
             switchTab('rnc');
         } else if (action === 'delete-rnc') {
             if (confirm(`Tem certeza que deseja excluir a RNC ${id.slice(-6)}?`)) {
                 state.rncs = state.rncs.filter(x => x.id !== id);
-                // Remove a RNC de qualquer plano de ação vinculado
                 state.actionPlans.forEach(p => p.linkedRNCs = (p.linkedRNCs || []).filter(rncId => rncId !== id));
                 saveState();
                 renderRncRecords();
@@ -1103,10 +992,6 @@ a{color:var(--primary);}
         }
     });
 
-    /**
-     * Garante que um plano de ação exista ou cria um novo se não houver um currentPlanId.
-     * @returns {object} O plano de ação atual ou recém-criado.
-     */
     function ensurePlanExists() {
         let plan = state.actionPlans.find(x => x.id === state.currentPlanId);
         if (!plan) {
@@ -1118,7 +1003,6 @@ a{color:var(--primary);}
         return plan;
     }
 
-    // Botões de Novo Plano de Ação
     $('#btnNewPlanMain').addEventListener('click', () => {
         const p = newPlan();
         state.actionPlans.push(p);
@@ -1129,10 +1013,8 @@ a{color:var(--primary);}
         toast('Plano criado.', 'fa-plus');
         switchTab('plans');
     });
-    // O botão de "Novo Plano" na aba de registros apenas aciona o botão principal
     $('#btnNewPlanFromRecords').addEventListener('click', () => $('#btnNewPlanMain').click());
 
-    // Salvar Plano de Ação principal
     $('#btnSavePlanMain').addEventListener('click', () => {
         const p = ensurePlanExists();
         p.title = $('#planTitle').value.trim() || 'Plano sem título';
@@ -1142,21 +1024,15 @@ a{color:var(--primary);}
         toast('Plano salvo.');
     });
 
-    // Abrir modal de vincular RNCs
     $('#btnOpenLinkRncModal').addEventListener('click', () => {
         const p = ensurePlanExists();
         populateRncLinkModal(p.linkedRNCs);
         $('#linkRncModal').style.display = 'flex';
     });
 
-    // Fechar modal de vincular RNCs
     $('#btnCloseLinkRncModal').addEventListener('click', () => $('#linkRncModal').style.display = 'none');
     $('#btnCancelLinkRnc').addEventListener('click', () => $('#linkRncModal').style.display = 'none');
 
-    /**
-     * Preenche o modal de vinculação de RNCs.
-     * @param {string[]} linked - IDs das RNCs já vinculadas.
-     */
     function populateRncLinkModal(linked = []) {
         const tbody = $('#rncLinkListBody');
         const noRncHint = $('#noRncHint');
@@ -1180,13 +1056,11 @@ a{color:var(--primary);}
             });
     }
 
-    // Filtrar RNCs no modal de vinculação
     $('#rncSearchInput').addEventListener('input', () => {
         const p = state.actionPlans.find(x => x.id === state.currentPlanId);
         populateRncLinkModal(p ? p.linkedRNCs : []);
     });
 
-    // Salvar vínculos de RNCs
     $('#btnSaveRncLinks').addEventListener('click', () => {
         const p = ensurePlanExists();
         p.linkedRNCs = $$('#rncLinkListBody input[type="checkbox"]:checked').map(input => input.value);
@@ -1196,7 +1070,6 @@ a{color:var(--primary);}
         toast('RNCs vinculadas.');
     });
 
-    // Remover RNC vinculada diretamente do chip
     $('#linkedRNCsDisplay').addEventListener('click', e => {
         const btn = e.target.closest('[data-remove-rnc]');
         if (!btn) return;
@@ -1207,11 +1080,9 @@ a{color:var(--primary);}
         toast('RNC desvinculada.');
     });
 
-    // Adicionar Ação 5W2H
     $('#btnAddAction5W2H').addEventListener('click', () => openActionModal(newAction()));
 
-    // Ações na tabela de ações 5W2H (editar/excluir)
-    $('#actionListBody').addEventListener('click', e => {
+    $('#planDetailsArea').addEventListener('click', e => {
         const btn = e.target.closest('button');
         if (!btn) return;
         const { action, id } = btn.dataset;
@@ -1231,10 +1102,6 @@ a{color:var(--primary);}
         }
     });
 
-    /**
-     * Abre o modal de edição/criação de ação 5W2H.
-     * @param {object} action - O objeto ação a ser editado ou um novo objeto ação.
-     */
     function openActionModal(action) {
         $('#modalTitle').textContent = action.what ? 'Editar Ação 5W2H' : 'Adicionar Ação 5W2H';
         $('#actionWhat').value = action.what || '';
@@ -1249,19 +1116,14 @@ a{color:var(--primary);}
         $('#actionModal').style.display = 'flex';
     }
 
-    /**
-     * Fecha o modal de ação 5W2H.
-     */
     function closeActionModal() {
         $('#actionModal').style.display = 'none';
         $('#actionModal').dataset.editingId = '';
     }
 
-    // Fechar modal de ação
     $('#btnCloseModal').addEventListener('click', closeActionModal);
     $('#btnCancelAction').addEventListener('click', closeActionModal);
 
-    // Salvar Ação 5W2H
     $('#btnSaveAction').addEventListener('click', () => {
         const p = ensurePlanExists();
         const editingId = $('#actionModal').dataset.editingId;
@@ -1287,7 +1149,6 @@ a{color:var(--primary);}
         toast('Ação salva.');
     });
 
-    // Ações na tabela de registros de Planos de Ação
     $('#planRecordsTableBody').addEventListener('click', e => {
         const btn = e.target.closest('button');
         if (!btn) return;
@@ -1296,55 +1157,45 @@ a{color:var(--primary);}
         if (action === 'view-plan' || action === 'edit-plan') {
             state.currentPlanId = id;
             const plan = state.actionPlans.find(x => x.id === id);
-            // Cria uma cópia profunda para evitar modificações diretas no estado antes de salvar
             renderPlanForm(JSON.parse(JSON.stringify(plan)));
             switchTab('plans');
         } else if (action === 'delete-plan') {
             if (confirm(`Tem certeza que deseja excluir o plano ${id.slice(-6)}?`)) {
                 state.actionPlans = state.actionPlans.filter(x => x.id !== id);
                 if (state.currentPlanId === id) {
-                    state.currentPlanId = null; // Limpa o plano atual se ele foi excluído
+                    state.currentPlanId = null;
                 }
                 saveState();
                 renderPlanRecords();
-                // Renderiza o formulário do plano, talvez com um plano vazio ou o primeiro disponível
                 renderPlanForm(state.actionPlans.find(x => x.id === state.currentPlanId) || null);
                 toast('Plano excluído.', 'fa-trash');
             }
         }
     });
 
-    // Autosave para o título do plano
     $('#planTitle').addEventListener('input', debounce(() => {
         const p = ensurePlanExists();
         p.title = $('#planTitle').value;
         saveState(true);
-        renderPlanRecords(); // Atualiza a lista de planos nos registros
+        renderPlanRecords();
     }, 500));
 
-    /**
-     * Realiza a renderização completa da interface.
-     */
     function fullRender() {
         renderDashboard();
         renderRncRecords();
         renderPlanRecords();
 
-        // Inicializa o formulário de RNC
         const currentRNC = state.rncs.find(x => x.id === state.currentRNCId) || newRNC();
-        state.currentRNCId = currentRNC.id; // Garante que sempre haja um currentRNCId
+        state.currentRNCId = currentRNC.id;
         setRNCForm(currentRNC);
-        // Se a nova RNC não estava no estado, adiciona
         if (!state.rncs.some(r => r.id === currentRNC.id)) {
             upsertRNC(currentRNC);
         }
 
-        // Inicializa o formulário de Plano de Ação
         const currentPlan = state.actionPlans.find(x => x.id === state.currentPlanId);
-        renderPlanForm(currentPlan || null); // Passa null se não houver plano atual
+        renderPlanForm(currentPlan || null);
     }
 
-    // Carrega o estado e renderiza a interface ao iniciar
     loadState();
     fullRender();
 })();
